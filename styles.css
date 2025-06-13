@@ -5,13 +5,13 @@
 }
 
 :root {
-    --warm-terracotta: #D76B30;
-    --soft-pink: #F2B2B2;
-    --sage-green: #A8C8B9;
-    --dusty-blue: #A3B8D0;
-    --warm-beige: #E8D8C3;
+    --white: hsl(337 2.7% 88.2%);
+    --dark-gray: hsl(360 0% 8.9%);
+    --light-gray: hsl(360 0% 21.8%);
+    --dark-pink: hsl(327 86.8% 27.7%);
+    --bright-pink: hsl(337 100% 61.8%);
+    --light-pink: hsla(337 85.8% 77% / 0.89);
 }
-
 
 /* Fonts */
 .roboto-condensed-regular {
@@ -26,7 +26,6 @@
   font-weight: 500;
   font-style: normal;
 }
-/* Fonts */
 
 html {
     font-size: 20px;
@@ -36,30 +35,13 @@ html {
 }
 
 body {
-    background-image: url(https://c.pxhere.com/photos/a5/a8/grunge_wall_concrete_grunge_background_texture_background_vintage_wall_background-682859.jpg);
-    background-repeat: no-repeat;
+    background-image: url(images/marble-3534940.jpg);
+    /* background-repeat: no-repeat; */
     background-size: cover;
     background-position: center;
     height: 100vh;
     margin: 0;
 }
-
-header, footer {
-    background-color: var(--warm-terracotta);
-}
-
-link, button {
-    background-color: var(--soft-pink);
-}
-
-p {
-    color: var(--dusty-blue);
-}
-
-.highlight {
-    background-color: var(--sage-green);
-}
-
 
 /* navigation bar */
 #nav-section {
@@ -68,106 +50,39 @@ p {
     position: fixed;
     top: 0;
     z-index: 1000;
-}
-
-#navbar {
-    display: flex;
-    justify-content: space-evenly;
-    padding-top: 20px;
-    height: 90px;
-}
-
-#navbar::before {
-    content: "";
-    flex: 1 40%;
-}
-
-#navbar a {
-    flex: 20px;
-    padding: 6px;
-    text-wrap: nowrap;
-    max-width: 120px;
-    text-decoration: none;
-    font-size: 1.6rem;
-    font-weight: bold;
-}
-
-#navbar a:hover {
-    transform: scale(1.1);
-    text-shadow: 1px 1px hsl(241.54deg 28.06% 17.25%);
-}
-
-#navbar a:visited {
-}
-
-/* main */
-#welcome-section {
-    height: 100vh;
-    text-align: center;
-    padding-top: 40%;
-    font-size: 2.5rem;
-    cursor: default;
-}
-
-#welcome-section > p {
-    font-size: 1.8rem;
-    font-weight: bold;
-}
-
-#about-me-section {
-    height: 100vh;
-}
-
-#project-section {
-    height: 100vh;
-}
-
-#work-section {
-    height: 100vh;
-}
-
-#education-section {
-    height: 100vh;
-}
-
-
-@media (max-width: 420px) {
-    html {
-        font-size: 14px;
-    }
-}
-
-/* ------------------------------------------------------- */
-
-
-
-
-
-
-
-
-#nav-section {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background:
+        radial-gradient(ellipse at top, var(--white), transparent),
+        radial-gradient(ellipse at bottom, var(--light-gray), transparent);
 }
 
-#navbar {
-    background-color: gray;
-    padding: 20px;
-    position: fixed;
+#navbar a:link{
+    text-decoration: none;
+    color: inherit;
+    font-size: 1.3rem;
+    padding: 0.6rem;
+    display: inline-block;
+    color: var(--dark-gray);
 }
 
-h1, h2 {
-    font-family: "Poiret One", sans-serif;
+#navbar a:hover {
+    transform: scale(1.2);
+    transition: transform 0.2s;
 }
 
+#navbar a:active {
+    scale: 0.7;
+}
 
+#navbar a:visited {
+    color: var(--light-gray);
+}
 
-
-
-/* ---------- SWITCH BUTTON ---------- */
- /* The switch - the box around the slider */
+/* switch button */
 .switch {
   position: relative;
   display: inline-block;
@@ -175,14 +90,12 @@ h1, h2 {
   height: 34px;
 }
 
-/* Hide default HTML checkbox */
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-/* The slider */
 .slider {
   position: absolute;
   cursor: pointer;
@@ -190,9 +103,11 @@ h1, h2 {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: var(--bright-pink);
+  border: 1px solid rgb(192, 192, 192);
   -webkit-transition: .4s;
   transition: .4s;
+  border-radius: 34px
 }
 
 .slider:before {
@@ -205,14 +120,15 @@ h1, h2 {
   background-color: white;
   -webkit-transition: .4s;
   transition: .4s;
+  border-radius: 50%;
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+    background-color: var(--dark-pink);
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px var(--bright-pink);
 }
 
 input:checked + .slider:before {
@@ -221,11 +137,52 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
+/* main section */
+#welcome-section {
+    height: 100vh;
+    text-align: center;
+    padding-top: 40%;
+    font-size: 2.5rem;
+    cursor: default;
 }
 
-.slider.round:before {
-  border-radius: 50%;
-} 
+#titles a {
+    font-size: 1.8rem;
+    text-decoration: none;
+    color: var(--light-gray);
+    display: inline-block;
+    transition: transform 0.2s, padding 0.2s;
+}
+
+#titles a:hover {
+    transform: scale(1.2);
+    padding: 0 30px;
+}
+
+/* Tooltip styles */
+#titles a::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 140%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-5px);
+    background-color: var(--dark-pink);
+    color: var(--white);
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    box-shadow: 0 2px 5px var(--dark-gray);
+    white-space: nowrap;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Show tooltip on hover */
+#titles a:hover::after {
+    opacity: 1; /* Show tooltip */
+    visibility: visible; /* Make it visible */
+    transform: translateX(-50%) translateY(-10px); /* Slight upward movement on hover */
+}
+
+/* #about-me-section {
+    height: 100vh;
+} */

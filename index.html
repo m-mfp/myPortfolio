@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -14,16 +14,17 @@
     <header>
         <section id="nav-section">
             <nav id="navbar">
-                <a href="#about-me-section">About Me</a>
-                <a href="#projects-section">Projects</a>
-                <a href="#experience-section">Work</a>
-                <a href="#education-section">Education</a>
+                <a href="#welcome-section">Home</a>
+                <a href="#aboutme-section">About Me</a>
+                <a href="projects.html">Projects</a>
+                <a href="experience.html">Work</a>
+                <a href="education.html">Education</a>
                 <a href="#contact-section">Contact</a>
             </nav>
             <div id="div-theme-btn">
                 <label for="switch-btn" class="switch">
-                    <input type="checkbox">
-                    <span class="slider round"></span>
+                    <input type="checkbox" id="switch-btn">
+                    <span class="slider"></span>
                 </label>
             </div>
         </section>
@@ -32,74 +33,20 @@
     <main>
         <section id="welcome-section">
             <h1>Hi there 👋, I'm Marcela! </h1>
-            <p id="titles"><a href="https://github.com/m-mfp">Programmer</a>, <a href="https://www.kaggle.com/marcelamartin">Certified Data Scientist</a> & <a href="https://www.linkedin.com/in/marcelamsp/">Physician</a></h1></p>
+            <p id="titles">
+                <a href="https://github.com/m-mfp" data-tooltip="Open my Github" target="_blank" >Programmer</a>
+                <a href="https://www.kaggle.com/marcelamartin" data-tooltip="Open my Kaggle" target="_blank">Certified Data Scientist</a>
+                <a href="https://www.linkedin.com/in/marcelamsp/" data-tooltip="Open my LinkedIn" target="_blank">Physician</a></h1></p>
         </section>
 
-        <section id="about-me-section">
+        <section id="aboutme-section">
             <h2>🌟 Something about me...</h2>
-            <p>I'm living in Rotterdam, Netherlands, with my husband, holding a Residency Permit, and in the process of acquiring my Italian Citizenship, all while developing a career in IT!</p>
             <p>I'm a certified data scientist with a medical background, passionate about innovation and tech. 
                 My experience in healthcare gives me a unique take on tackling complex challenges. 
                 I'm working on improving my skills in programming, machine learning, and software development to come up with creative solutions and turn my knowledge into real-world impact. 
                 I'm a certified data scientist with a medical background, passionate about innovation and tech. 
                 My experience in healthcare gives me a unique take on tackling complex challenges. 
                 I'm working on improving my skills in programming, machine learning, and software development to come up with creative solutions and turn my knowledge into real-world impact.</p>
-        </section>
-
-        <section id="project-section">
-            <h2>👩🏼‍💻 What I'm doing now...</h2>
-            <p>Check out my past projects!</p>
-            <div class="project-tile">
-                <a href="">This is a project</a>
-                <a href="">A second project, right here</a>
-                <a href="">Oh my, I have a third one too!</a>
-                <a href=""></a>
-                <a href=""></a>
-                <a href="">Complicated Double Bronchogenic Cysts - European Society of Radiology</a>
-            </div>
-        </section>
-
-        <section id="experience-section">
-            <h2 class="experience-title">💼 My Work Experience</h2>
-            <ul>
-                <li>Career Development</li>
-                <li>Family Medicine Resident</li>
-                <li>Physician</li>
-                <li>English Teacher</li>
-            </ul>
-        </section>
-
-        <section id="education-section">
-            <h2 class="education-title">📖 What I've studied...</h2>
-            <h3>Online Studies</h3>
-            <ul>
-                <li>The Modern Python3 Bootcamp - Udemy</li>
-                <li>CompTIA A+ - Udemy</li>
-                <li>Web-Developer Bootcamp - Udemy</li>
-                <li>Cyber Million Course - Immersive</li>
-                <li>Data Science Associate - DataCamp</li>
-                <li>Data Scientist - DataCamp</li>
-                <li>Machine Learning in Python - DataCamp</li>
-                <li>Thoracic Radiology Course - Manole</li>
-                <li>Approach to Clinical Emergencies and Urgencies in the Emergency Department - Hospital Albert Einstein</li>
-                <li>Introduction to Breast Cancer - Yale University</li>
-                <li>Vital Signs - University of Pennsylvania</li>
-                <li>Advanced Trauma Life Support - American College of Surgeons</li>
-                <li>Advanced Cardiovascular Life Support - American Heart Association</li>
-            </ul>
-            <h3>Languages</h3>
-            <ul>
-                <li>English - TOEFL</li>
-                <li>Italian - CELI</li>
-                <li>Dutch - in progress..</li>
-            </ul>
-            <h3>University</h3>
-            <ul><li>Universidade de Passo Fundo</li></ul>
-            <h3>High School</h3>
-            <ul>
-                <li>Barnesville High School</li>
-                <li>Colégio Mauà</li>
-            </ul>
         </section>
 
         <section id="contact-section">
