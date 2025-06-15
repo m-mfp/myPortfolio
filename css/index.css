@@ -35,7 +35,7 @@ html {
 }
 
 body {
-    background-image: url(images/marble-3534940.jpg);
+    background-image: url(../images/marble-3534940.jpg);
     /* background-repeat: no-repeat; */
     background-size: cover;
     background-position: center;
@@ -141,12 +141,13 @@ input:checked + .slider:before {
 #welcome-section {
     height: 100vh;
     text-align: center;
-    padding-top: 40%;
+    margin-top: 300px;
     font-size: 2.5rem;
     cursor: default;
 }
 
 #titles a {
+    padding-top: 60px;
     font-size: 1.8rem;
     text-decoration: none;
     color: var(--light-gray);
