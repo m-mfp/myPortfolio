@@ -20,11 +20,19 @@
   font-weight: 500;
   font-style: normal;
 }
-
 .poiret-one-regular {
   font-family: "Poiret One", sans-serif;
   font-weight: 500;
   font-style: normal;
+}
+
+.dark {
+    color: #bbb;
+    background-image: url(../images/night-sky-image.jpg);
+}
+
+.light {
+    background-image: url(../images/marble-3534940.jpg);
 }
 
 html {
@@ -36,11 +44,15 @@ html {
 
 body {
     background-image: url(../images/marble-3534940.jpg);
-    /* background-repeat: no-repeat; */
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     height: 100vh;
-    margin: 0;
+    display: flex;
+    flex-direction: column;
+    padding-top: 200px;
+    text-align: center;
+    color: var(--light-gray);
 }
 
 /* navigation bar */
@@ -82,72 +94,47 @@ body {
     color: var(--light-gray);
 }
 
-/* switch button */
-.switch {
-  position: relative;
-  display: inline-block;
+/* dark-mode button */
+#toggle-btn {
   width: 60px;
-  height: 34px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
+  height: 30px;
+  background-color: #333;
+  border-radius: 30px;
+  position: relative;
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--bright-pink);
-  border: 1px solid rgb(192, 192, 192);
-  -webkit-transition: .4s;
-  transition: .4s;
-  border-radius: 34px
+  transition: background-color 0.3s;
 }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
+#toggle-btn::before {
+  content: '';
+  width: 22px;
+  height: 22px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
   border-radius: 50%;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  transition: transform 0.3s;
 }
 
-input:checked + .slider {
-    background-color: var(--dark-pink);
+#toggle-btn.dark::before {
+  transform: translateX(30px);
 }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px var(--bright-pink);
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
 
 /* main section */
 #welcome-section {
     height: 100vh;
-    text-align: center;
-    margin-top: 300px;
     font-size: 2.5rem;
-    cursor: default;
+}
+
+#titles {
+  color: var(--dark-pink);
+  font-size: 2rem;
 }
 
 #titles a {
-    padding-top: 60px;
+    padding: 60px 10px;
     font-size: 1.8rem;
     text-decoration: none;
     color: var(--light-gray);
@@ -161,8 +148,13 @@ input:checked + .slider:before {
 }
 
 /* Tooltip styles */
+#titles a.show-tooltip::after {
+  display: inline-block;
+}
+
 #titles a::after {
     content: attr(data-tooltip);
+    display: none;
     position: absolute;
     top: 140%;
     left: 50%;
@@ -177,13 +169,45 @@ input:checked + .slider:before {
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Show tooltip on hover */
-#titles a:hover::after {
-    opacity: 1; /* Show tooltip */
-    visibility: visible; /* Make it visible */
-    transform: translateX(-50%) translateY(-10px); /* Slight upward movement on hover */
+#aboutme-section {
+    height: 100vh;
 }
 
-/* #about-me-section {
+#aboutme-section h2 {
+    font-size: 2rem;
+    color: var(--dark-gray);
+    padding-top: 100px;
+}
+
+#aboutme-section img {
+    width: 60%;
+    border-radius: 50px;
+    margin: 2rem;
+}
+
+#aboutme-section p {
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: var(--light-gray);
+    text-shadow: 1px 1px var(--dark-gray);
+    padding: 1rem;
+    width: 80%;
+    margin: 0 auto;
+    border: 2px solid var(--bright-pink);
+    border-radius: 20px;
+}
+
+
+
+
+    /* background-image: url(../images/marble-3534940.jpg); */
+    /* background-repeat: no-repeat; */
+    /* background-size: cover;
+    background-position: center;
     height: 100vh;
-} */
+    font-weight: 100vw;
+    display: flex;
+    flex-direction: column;
+    padding-top: 200px;
+    text-align: center;
+    color: var(--light-gray); */
