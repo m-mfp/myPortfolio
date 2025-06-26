@@ -1,8 +1,27 @@
 
+const output = document.querySelector('.output');
 
+const body = document.body
+const darkModeBtn = document.getElementById("switch-btn")
 
+const toggleBtn = document.getElementById("toggle-btn");
 
-const ingredient = document.getElementById("ingredient")
+const ingredientSection = document.getElementById("ingredientSection")
+const ingredientBtn = document.getElementById("ingredientBtn")
+const selectIngredientBtn = document.getElementById("selectIngredientBtn")
+
+toggleBtn.addEventListener("click", () => {
+    const isDarkMode = body.classList.contains("dark")
+    console.log(isDarkMode)
+
+    if (isDarkMode) {
+        body.classList.remove('dark')
+        toggleBtn.classList.remove('dark')
+    } else {
+        body.classList.add('dark')
+        toggleBtn.classList.add('dark')
+    }
+})
 
 document.addEventListener('DOMContentLoaded', function() {
     fetch('../data.csv')
@@ -11,8 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
             Papa.parse(data, {
                 header: true,
                 complete: function(results) {
-                    ingredient.addEventListener("change", () => {
-                        displayData(results.data, ingredient.value)
+                    selectIngredientBtn.addEventListener("change", () => {
+                        displayData(results.data, selectIngredientBtn)
                     })
                 }
             });
@@ -20,20 +39,58 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Error fetching the CSV file:', error));
 });
 
+function displayData(data, input) {
 
-function displayData(data, selectedIngredient) {
-    const output = document.getElementById('output');
+    const selectId = input.id;
+    switch (selectId) {
+        case 'selectIngredientBtn':
+            var row = findEffect(data, input.value)
+            break;
+        default:
+            break;
+    }
+
     output.innerHTML = '';
+    if (row) {
+        Object.values(row).slice(1).forEach(effect => {
+            div = document.createElement("div")
+            div.id = "input"
+            div.innerHTML = `<h2>${effect}</h2>`;
+            output.appendChild(div)
+
+            innerdiv = document.createElement("div")
+            const ingredientList = findIngredients(data, effect)
+            ingredientList.forEach(ing => {
+                innerdiv.innerHTML += `<p>${ing}</p>`
+            });
+            div.appendChild(innerdiv)
+        });
+    }
+}
+
+function findEffect(data, selectIngredientBtn) {
+    return data.find(row => row.Ingredient.toLowerCase() === selectIngredientBtn.toLowerCase());
+}
+
+function findIngredients(data, effect) {
+    let ingredientList = []
+    const headers = ["EffectOne", "EffectTwo", "EffectThree", "EffectFour"]
 
     data.forEach(row => {
-        if (row.Ingredient.toLowerCase() == selectedIngredient.toLowerCase()) {
-            output.innerHTML = `
-                <h3>${row.Ingredient}</h3>
-                <p>${row.EffectOne}</p>
-                <p>${row.EffectTwo}</p>
-                <p>${row.EffectThree}</p>
-                <p>${row.EffectFour}</p>
-            `;
-        }
+        headers.forEach(head => {
+            if(row[head].toLowerCase() == effect.toLowerCase()){
+                ingredientList.push(row.Ingredient)
+            }  
+        })
+           
     });
+    return ingredientList
 }
+
+ingredientBtn.addEventListener("click", () => {
+    effectBtn.disabled = !effectBtn.disabled; 
+    ingredientBtn.classList.toggle("pressed")
+    ingredientSection.classList.toggle("hidden")
+    selectIngredientBtn.value = "-"
+    output.innerHTML = '';
+})

@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <title>✨ My Prejects</title>
+    <title>✨ My Projects</title>
   </head>
 
   <body>
@@ -27,26 +27,31 @@
     <main>
         <h1>👩🏼‍💻 Skyrim Alchemy Scrapper...</h1>
 
-        <h2>Choose Ingredient to find its effects</h2>
-        <label for="ingredient">Type Ingredient</label>
-        <select name="ingredient" id="ingredient">
-            <option value="-">Select</option>
-            <option value="bee">Bee</option>
-            <option value="garlic">Garlic</option>
-        </select>
-        <div id="output"></div>
+        <div id="buttons">
+            <button id="ingredientBtn">Choose Ingredient</button>
+            <button id="effectBtn">Choose Effect</button>
+        </div>
+
+        <section class="hidden" id="ingredientSection">
+            <select class="selectBtn" name="selectIngredientBtn" id="selectIngredientBtn">
+                <option value="-" selected>--- Select Ingredient ---</option>
+                <option value="bee">Bee</option>
+                <option value="garlic">Garlic</option>
+            </select>
+            <div class="output"></div>
+        </section>
+
     </main>
 
     <footer>
-        <section id="contact-section">
-            <h2>🤔 Social Media you say... what's that?</h2>
+        <h2>🤔 Social Media you say... what's that?</h2>
+        <div>
             <a href="https://github.com/m-mfp" title="Github"><img src="images/394187_github_icon.png" alt="Github Icon"></a>
             <a href="https://www.linkedin.com/in/marcelamsp/"><img src="images/5296501_linkedin_network_linkedin logo_icon.png" alt="LinkedIn Icon"></a>
             <a href="https://www.kaggle.com/marcelamartin"><img src="images/4519136_kaggle_icon.png" alt="Kaggle Icon"></a>
-        </section>
+        </div>
     </footer>
 
   </body>
 
 </html>
-
