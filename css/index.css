@@ -193,21 +193,19 @@ body {
     padding: 1rem;
     width: 80%;
     margin: 0 auto;
-    border: 2px solid var(--bright-pink);
     border-radius: 20px;
 }
 
 
+footer {
+    position: absolute;
+    bottom: 0;
+}
 
 
-    /* background-image: url(../images/marble-3534940.jpg); */
-    /* background-repeat: no-repeat; */
-    /* background-size: cover;
-    background-position: center;
-    height: 100vh;
-    font-weight: 100vw;
-    display: flex;
-    flex-direction: column;
-    padding-top: 200px;
-    text-align: center;
-    color: var(--light-gray); */
+#output {
+    border: 2px solid gray;
+    width: 80%;
+    min-height: 100px;
+    margin: 0 auto;
+}

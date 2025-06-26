@@ -3,53 +3,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="js/script.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <title>✨ My Portfolio</title>
+    <title>✨ My Prejects</title>
   </head>
 
   <body>
     <header>
         <section id="nav-section">
             <nav id="navbar">
-                <a href="index.html#welcome-section">Home</a>
-                <a href="index.html#aboutme-section">About Me</a>
+                <a href="#welcome-section">Home</a>
+                <a href="#aboutme-section">About Me</a>
                 <a href="projects.html">Projects</a>
-                <a href="experience.html">Work</a>
-                <a href="education.html">Education</a>
-                <a href="index.html#contact-section">Contact</a>
             </nav>
-            <div id="div-theme-btn">
-                <label for="switch-btn" class="switch">
-                    <input type="checkbox">
-                    <span class="slider round"></span>
-                </label>
-            </div>
+            <div id="toggle-btn"></div>
         </section>
     </header>
 
     <main>
-        <section id="project-section">
-            <h2>👩🏼‍💻 What I'm doing now...</h2>
-            <p>Check out my past projects!</p>
-            <div class="project-tile">
-                <a href="">This is a project</a>
-                <a href="">A second project, right here</a>
-                <a href="">Oh my, I have a third one too!</a>
-                <a href=""></a>
-                <a href=""></a>
-                <a href="">Complicated Double Bronchogenic Cysts - European Society of Radiology</a>
-            </div>
-        </section>
+        <h1>👩🏼‍💻 Skyrim Alchemy Scrapper...</h1>
+
+        <h2>Choose Ingredient to find its effects</h2>
+        <label for="ingredient">Type Ingredient</label>
+        <select name="ingredient" id="ingredient">
+            <option value="-">Select</option>
+            <option value="bee">Bee</option>
+            <option value="garlic">Garlic</option>
+        </select>
+        <div id="output"></div>
     </main>
 
     <footer>
-        <!-- CONTACT EMOJIS WITH LINKS -->
+        <section id="contact-section">
+            <h2>🤔 Social Media you say... what's that?</h2>
+            <a href="https://github.com/m-mfp" title="Github"><img src="images/394187_github_icon.png" alt="Github Icon"></a>
+            <a href="https://www.linkedin.com/in/marcelamsp/"><img src="images/5296501_linkedin_network_linkedin logo_icon.png" alt="LinkedIn Icon"></a>
+            <a href="https://www.kaggle.com/marcelamartin"><img src="images/4519136_kaggle_icon.png" alt="Kaggle Icon"></a>
+        </section>
     </footer>
 
   </body>
-  <script href="script.js"></script>
 
 </html>
+
