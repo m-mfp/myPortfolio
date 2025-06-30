@@ -5,11 +5,10 @@ const toggleBtn = document.getElementById("toggle-btn");
 
 toggleBtn.addEventListener("click", () => {
     const isDarkMode = body.classList.contains("dark")
-    console.log(isDarkMode)
-
     if (isDarkMode) {
         body.classList.remove('dark')
         toggleBtn.classList.remove('dark')
+        console.log(body.querySelector("#aboutme-section"))
     } else {
         body.classList.add('dark')
         toggleBtn.classList.add('dark')
@@ -43,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Error fetching the CSV file:', error));
 });
 
+
 function handleBtn(data, btn) {
 
     while (outputSection.children.length > 1) {
@@ -72,11 +72,13 @@ function handleBtn(data, btn) {
         effectBtn.classList.toggle("pressed")
         outputSection.classList.toggle("hidden")
 
-    selectElement.value = "-"
-    output.innerHTML = '';
-    selectElement.addEventListener("change", () => {
-        displayEffectData(data, selectElement)
-    })
+        selectElement.value = "-"
+        output.innerHTML = '';
+        selectElement.addEventListener("change", () => {
+            displayEffectData(data, selectElement)
+        })
+    } else if (btn.id == "createPotionBtn") {
+
     }
 }
 

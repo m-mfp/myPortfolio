@@ -179,11 +179,17 @@ h1 {
 
 #aboutme-section {
     height: 100vh;
+    color: var(--light-gray);
+    text-shadow: 1px 1px var(--dark-gray);
+    margin-bottom: 150px;
 }
 
 #aboutme-section h2 {
     font-size: 2rem;
-    color: var(--dark-gray);
+    width: 70%;
+    margin: 0 auto;
+    padding: 10px;
+    border-bottom: 1px dashed var(--light-gray);
     padding-top: 100px;
 }
 
@@ -196,12 +202,15 @@ h1 {
 #aboutme-section p {
     font-size: 1.7rem;
     font-weight: 500;
-    color: var(--light-gray);
-    text-shadow: 1px 1px var(--dark-gray);
     padding: 1rem;
     width: 80%;
     margin: 0 auto;
     border-radius: 20px;
+}
+
+#aboutme-section.dark {
+    color: var(--white);
+    text-shadow: 1px 1px var(--light-gray);
 }
 
 #buttons {
