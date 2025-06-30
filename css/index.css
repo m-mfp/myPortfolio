@@ -67,12 +67,12 @@ body {
     align-items: center;
     padding: 20px 40px;
     background:
-        rgba(53, 52, 52, 0.7); /* Added a semi-transparent black background */
+        rgba(53, 52, 52, 0.7);
 }
 
 #navbar a:link {
     text-decoration: none;
-    color: var(--white); /* Changed to white for better visibility */
+    color: var(--white);
     font-size: 1.3rem;
     padding: 0.6rem;
     display: inline-block;
@@ -81,11 +81,11 @@ body {
 #navbar a:hover {
     transform: scale(1.2);
     transition: transform 0.2s;
-    color: var(--bright-pink); /* Change color on hover for better visibility */
+    color: var(--bright-pink);
 }
 
 #navbar a:active {
-    transform: scale(0.7); /* Fixed the scale property */
+    transform: scale(0.7);
 }
 
 #navbar a:visited {
@@ -262,14 +262,12 @@ button.pressed {
 }
 
 button:disabled {
-    background: linear-gradient(135deg, #e0e0e0, #d0d0d0); /* Lighter background */
-    color: #999; /* Gray text color */
-    border: 1px solid rgba(200, 200, 200, 0.5); /* Keep border color consistent */
-    cursor: not-allowed; /* Change cursor to indicate it's not clickable */
-    box-shadow: none; /* Remove shadow to indicate it's inactive */
+    background: linear-gradient(135deg, #e0e0e0, #d0d0d0);
+    color: #999;
+    border: 1px solid rgba(200, 200, 200, 0.5);
+    cursor: not-allowed;
+    box-shadow: none;
 }
-
-
 
 /* Dark Mode Styles */
 .dark button {
@@ -282,9 +280,6 @@ button:disabled {
     background: linear-gradient(135deg, #444, #555);
 }
 
-
-
-/*  */
 .output {
     max-width: 1100px;
     min-width: 700px;
@@ -314,7 +309,7 @@ button:disabled {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: background 0.3s, box-shadow 0.3s, border-color 0.3s;
     cursor: pointer;
-    appearance: none; /* Remove default styling */
+    appearance: none;
     -webkit-appearance: none; /* For Safari */
     -moz-appearance: none; /* For Firefox */
 }
@@ -323,10 +318,9 @@ button:disabled {
     font-size: 0.7rem;
     font-family: "Poiret One", sans-serif;
     color: #333;
-    background-color: #ffffff; /* Set a background color for options */
+    background-color: #ffffff;
 }
 
-/* Optional: Add hover effect for options (not supported in all browsers) */
 .selectBtn:hover {
     background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
     border-color: #bbb;
@@ -363,6 +357,12 @@ button:disabled {
     overflow-y: scroll;
     padding: 10px;
     flex-grow: 1;
+}
+
+#effect-output {
+    column-count: 2;
+    column-gap: 20px;
+    overflow-y: hidden;
 }
 
 /* Footer */

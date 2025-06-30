@@ -18,10 +18,11 @@ toggleBtn.addEventListener("click", () => {
 
 // Skyrim Alchemy Scrapper
 const output = document.querySelector('.output');
-const ingredientSection = document.getElementById("ingredientSection")
+const btns = document.querySelectorAll("button")
 const ingredientBtn = document.getElementById("ingredientBtn")
+const effectBtn = document.getElementById("effectBtn")
 const selectIngredientBtn = document.getElementById("selectIngredientBtn")
-
+const outputSection = document.getElementById("output-section")
 
 document.addEventListener('DOMContentLoaded', function() {
     fetch('../data.csv')
@@ -30,10 +31,10 @@ document.addEventListener('DOMContentLoaded', function() {
             Papa.parse(data, {
                 header: true,
                 complete: function(results) {
-                    ingredientBtn.addEventListener("click", () => {
-                        fillSelectionBtn(results.data)
-                        selectIngredientBtn.addEventListener("change", () => {
-                            displayData(results.data, selectIngredientBtn)
+
+                    btns.forEach((btn) => {
+                        btn.addEventListener("click", () => {
+                            handleBtn(results.data, btn)
                         })
                     })
                 }
@@ -42,25 +43,76 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Error fetching the CSV file:', error));
 });
 
-function fillSelectionBtn(data) {
-    selectIngredientBtn.innerHTML = `
+function handleBtn(data, btn) {
+
+    while (outputSection.children.length > 1) {
+        outputSection.removeChild(outputSection.firstChild);
+    }
+
+    var selectElement = document.createElement("select")
+    selectElement.classList.add("selectBtn")
+    outputSection.insertBefore(selectElement, outputSection.firstChild);
+
+    if (btn.id == "ingredientBtn") {
+        selectElement.id = "selectIngredientBtn"
+        fillIngredientSelectBtn(data, selectElement)
+        effectBtn.disabled = !effectBtn.disabled; 
+        ingredientBtn.classList.toggle("pressed")
+        outputSection.classList.toggle("hidden")
+        
+        selectElement.value = "-"
+        output.innerHTML = '';
+        selectElement.addEventListener("change", () => {
+            displayIngredientData(data, selectElement)
+        })
+    } else if (btn.id == "effectBtn") {
+        selectElement.id = "selectEffectBtn"
+        fillEffectSelectBtn(data, selectElement)
+        ingredientBtn.disabled = !ingredientBtn.disabled; 
+        effectBtn.classList.toggle("pressed")
+        outputSection.classList.toggle("hidden")
+
+    selectElement.value = "-"
+    output.innerHTML = '';
+    selectElement.addEventListener("change", () => {
+        displayEffectData(data, selectElement)
+    })
+    }
+}
+
+function fillIngredientSelectBtn(data, selectElement) {
+    selectElement.innerHTML = `
         <option value="-" selected>--- Select Ingredient ---</option>
     `
     data.forEach(row => {
-        selectIngredientBtn.innerHTML += `
-            <option value="${row.Ingredient}">${row.Ingredient}</option>
-        `
+        selectElement.innerHTML += `<option value="${row.Ingredient}">${row.Ingredient}</option>`
     })
 }
 
+function fillEffectSelectBtn(data, selectElement) {
+    selectElement.innerHTML = `
+        <option value="-" selected>--- Select Effect ---</option>
+    `
+    let effects = new Set
+    data.forEach(row => {
+        effects.add(row.EffectOne)
+        effects.add(row.EffectTwo)
+        effects.add(row.EffectThree)
+    })
+    const effectsArray = [...effects]
+    effectsArray.sort().forEach(effect => selectElement.innerHTML += `<option value="${effect}">${effect}</option>`)
+}
 
-// Display Data
-function displayData(data, input) {
+
+// Display Ingredient Data
+function displayIngredientData(data, input) {
     const selectId = input.id;
     switch (selectId) {
         case 'selectIngredientBtn':
             var row = findEffect(data, input.value)
             break;
+        case 'selectEffectBtn':
+            break
         default:
             break;
     }
@@ -83,11 +135,30 @@ function displayData(data, input) {
     }
 }
 
-// Find Effects for given Ingredient
-function findEffect(data, selectIngredientBtn) {
-    return data.find(row => row.Ingredient.toLowerCase() === selectIngredientBtn.toLowerCase());
+// Display Effect Data
+function displayEffectData(data, input) {
+    output.innerHTML = '';
+
+    div = document.createElement("div")
+    div.id = "input"
+    div.innerHTML = `<h2>${input.value}</h2>`;
+    output.appendChild(div)
+
+    innerdiv = document.createElement("div")
+    innerdiv.id = "effect-output"
+    const ingredientList = findIngredients(data, input.value)
+    ingredientList.forEach(ing => {
+        innerdiv.innerHTML += `<p>${ing}</p>`
+    });
+    div.appendChild(innerdiv)
 }
 
+// Find Effects for given Ingredient
+function findEffect(data, selectElement) {
+    return data.find(row => row.Ingredient.toLowerCase() === selectElement.toLowerCase());
+}
+
+// Find Ingredients for given Effect
 function findIngredients(data, effect) {
     let ingredientList = []
     const headers = ["EffectOne", "EffectTwo", "EffectThree", "EffectFour"]
@@ -101,17 +172,6 @@ function findIngredients(data, effect) {
     });
     return ingredientList
 }
-
-// Ingredient Btn Listener
-ingredientBtn.addEventListener("click", () => {
-    effectBtn.disabled = !effectBtn.disabled; 
-    ingredientBtn.classList.toggle("pressed")
-    ingredientSection.classList.toggle("hidden")
-    selectIngredientBtn.value = "-"
-    output.innerHTML = '';
-})
-
-
 
 
 
