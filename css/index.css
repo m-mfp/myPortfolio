@@ -5,12 +5,14 @@
 }
 
 :root {
-    --white: #bbb;
-    --dark-gray: hsl(360 0% 8.9%);
-    --light-gray: hsl(360 0% 21.8%);
+    --white: hsl(0, 0%, 90%);
+    --dark-gray: hsl(360 0% 9%); /* Slightly lighter dark gray */
+    --light-gray: hsl(360 0% 40%); /* Adjusted light gray for better visibility */
     --dark-pink: hsl(327 86.8% 27.7%);
     --bright-pink: hsl(337 100% 61.8%);
-    --light-pink: hsla(337 85.8% 77% / 0.89);
+    --light-pink: hsla(337, 37%, 66%, 0.89);
+    --body-bg-light: url(../images/marble-3534940.jpg);
+    --body-bg-dark: url(../images/night-sky-image.jpg);
 }
 
 /* Fonts */
@@ -28,7 +30,7 @@
 
 .dark {
     color: #bbb;
-    background-image: url(../images/night-sky-image.jpg);
+    background-image: var(--body-bg-dark);
 }
 
 html {
@@ -39,7 +41,7 @@ html {
 }
 
 body {
-    background-image: url(../images/marble-3534940.jpg);
+    background-image: var(--body-bg-light);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -50,7 +52,6 @@ body {
     text-align: center;
     color: var(--light-gray);
 }
-
 
 
 /* navigation bar */
@@ -66,37 +67,37 @@ body {
     align-items: center;
     padding: 20px 40px;
     background:
-        radial-gradient(ellipse at top, var(--white), transparent),
-        radial-gradient(ellipse at bottom, var(--light-gray), transparent);
+        rgba(53, 52, 52, 0.7); /* Added a semi-transparent black background */
 }
 
-#navbar a:link{
+#navbar a:link {
     text-decoration: none;
-    color: inherit;
+    color: var(--white); /* Changed to white for better visibility */
     font-size: 1.3rem;
     padding: 0.6rem;
     display: inline-block;
-    color: var(--dark-gray);
 }
 
 #navbar a:hover {
     transform: scale(1.2);
     transition: transform 0.2s;
+    color: var(--bright-pink); /* Change color on hover for better visibility */
 }
 
 #navbar a:active {
-    scale: 0.7;
+    transform: scale(0.7); /* Fixed the scale property */
 }
 
 #navbar a:visited {
-    color: var(--light-gray);
+    color: var(--light-pink);
 }
+
 
 /* dark-mode button */
 #toggle-btn {
   width: 60px;
   height: 30px;
-  background-color: #333;
+  background-color: var(--dark-gray);
   border-radius: 30px;
   position: relative;
   cursor: pointer;
@@ -107,7 +108,7 @@ body {
   content: '';
   width: 22px;
   height: 22px;
-  background-color: white;
+  background-color: var(--white);
   border-radius: 50%;
   position: absolute;
   top: 4px;
@@ -128,6 +129,7 @@ body {
 
 h1 {
     padding: 10px;
+    color: var(--light-gray);
 }
 
 #titles {
@@ -144,11 +146,11 @@ h1 {
     transition: transform 0.2s, padding 0.2s;
 }
 
-.dark #titles a {
+.dark #titles a, .dark h1 {
     color: var(--white);
 }
 
-#titles a:hover {
+#titles a:hover{
     transform: scale(1.2);
     padding: 0 30px;
 }
@@ -209,6 +211,17 @@ h1 {
     align-items: center;
 }
 
+/* UGLY IMAGE */
+#media-container {
+    width: 90%;
+    margin: 80px auto;
+}
+
+#media-container img {
+    border-radius: 50%;
+    width: 100%;
+}
+/* UGLY IMAGE */
 
 button {
     padding: 10px 15px;
@@ -354,17 +367,18 @@ button:disabled {
 
 /* Footer */
 footer {
-    width: 40%;
-    height: 10%;
+    width: 50%;
+    height: 8%;
     position: fixed;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    margin: 0;
+    margin-bottom: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-size: 0.8rem;
 }
 
 footer h2 {
@@ -374,8 +388,12 @@ footer h2 {
 
 footer div {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     width: 100%;
 }
 
 
+#social-media-links a:hover {
+    transform: scale(1.2);
+    /* padding: 0 30px; */
+}

@@ -1,14 +1,7 @@
-
-const output = document.querySelector('.output');
-
+// dark mode
 const body = document.body
 const darkModeBtn = document.getElementById("switch-btn")
-
 const toggleBtn = document.getElementById("toggle-btn");
-
-const ingredientSection = document.getElementById("ingredientSection")
-const ingredientBtn = document.getElementById("ingredientBtn")
-const selectIngredientBtn = document.getElementById("selectIngredientBtn")
 
 toggleBtn.addEventListener("click", () => {
     const isDarkMode = body.classList.contains("dark")
@@ -23,6 +16,13 @@ toggleBtn.addEventListener("click", () => {
     }
 })
 
+// Skyrim Alchemy Scrapper
+const output = document.querySelector('.output');
+const ingredientSection = document.getElementById("ingredientSection")
+const ingredientBtn = document.getElementById("ingredientBtn")
+const selectIngredientBtn = document.getElementById("selectIngredientBtn")
+
+
 document.addEventListener('DOMContentLoaded', function() {
     fetch('../data.csv')
         .then(response => response.text())
@@ -30,8 +30,11 @@ document.addEventListener('DOMContentLoaded', function() {
             Papa.parse(data, {
                 header: true,
                 complete: function(results) {
-                    selectIngredientBtn.addEventListener("change", () => {
-                        displayData(results.data, selectIngredientBtn)
+                    ingredientBtn.addEventListener("click", () => {
+                        fillSelectionBtn(results.data)
+                        selectIngredientBtn.addEventListener("change", () => {
+                            displayData(results.data, selectIngredientBtn)
+                        })
                     })
                 }
             });
@@ -39,8 +42,20 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Error fetching the CSV file:', error));
 });
 
-function displayData(data, input) {
+function fillSelectionBtn(data) {
+    selectIngredientBtn.innerHTML = `
+        <option value="-" selected>--- Select Ingredient ---</option>
+    `
+    data.forEach(row => {
+        selectIngredientBtn.innerHTML += `
+            <option value="${row.Ingredient}">${row.Ingredient}</option>
+        `
+    })
+}
 
+
+// Display Data
+function displayData(data, input) {
     const selectId = input.id;
     switch (selectId) {
         case 'selectIngredientBtn':
@@ -68,6 +83,7 @@ function displayData(data, input) {
     }
 }
 
+// Find Effects for given Ingredient
 function findEffect(data, selectIngredientBtn) {
     return data.find(row => row.Ingredient.toLowerCase() === selectIngredientBtn.toLowerCase());
 }
@@ -81,12 +97,12 @@ function findIngredients(data, effect) {
             if(row[head].toLowerCase() == effect.toLowerCase()){
                 ingredientList.push(row.Ingredient)
             }  
-        })
-           
+        })  
     });
     return ingredientList
 }
 
+// Ingredient Btn Listener
 ingredientBtn.addEventListener("click", () => {
     effectBtn.disabled = !effectBtn.disabled; 
     ingredientBtn.classList.toggle("pressed")
@@ -94,3 +110,8 @@ ingredientBtn.addEventListener("click", () => {
     selectIngredientBtn.value = "-"
     output.innerHTML = '';
 })
+
+
+
+
+
