@@ -23,8 +23,8 @@ const effectBtn = document.getElementById("effectBtn")
 const selectIngredientBtn = document.getElementById("selectIngredientBtn")
 const outputSection = document.getElementById("output-section")
 
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('../data.csv')
+document.addEventListener('DOMContentLoaded', async function() {
+    await fetch('../data.csv')
         .then(response => response.text())
         .then(data => {
             Papa.parse(data, {
