@@ -24,7 +24,7 @@ const selectIngredientBtn = document.getElementById("selectIngredientBtn");
 const outputSection = document.getElementById("output-section");
 
 document.addEventListener('DOMContentLoaded', function() {
-    d3.csv("../data.csv")
+    d3.csv("data.csv")
     .then(function(data) {
         btns.forEach((btn) => {
             btn.addEventListener("click", () => {
