@@ -16,14 +16,42 @@ toggleBtn.addEventListener("click", () => {
 })
 
 // Skyrim Alchemy Scrapper
+// const output = document.querySelector('.output');
+// const btns = document.querySelectorAll("button")
+// const ingredientBtn = document.getElementById("ingredientBtn")
+// const effectBtn = document.getElementById("effectBtn")
+// const selectIngredientBtn = document.getElementById("selectIngredientBtn")
+// const outputSection = document.getElementById("output-section")
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     fetch('../data.csv')
+//         .then(response => response.text())
+//         .then(data => {
+//             Papa.parse(data, {
+//                 header: true,
+//                 complete: function(results) {
+
+//                     btns.forEach((btn) => {
+//                         btn.addEventListener("click", () => {
+//                             handleBtn(results.data, btn)
+//                         })
+//                     })
+//                 }
+//             });
+//         })
+//         .catch(error => console.error('Error fetching the CSV file:', error));
+// });
+
+
 const output = document.querySelector('.output');
-const btns = document.querySelectorAll("button")
-const ingredientBtn = document.getElementById("ingredientBtn")
-const effectBtn = document.getElementById("effectBtn")
-const selectIngredientBtn = document.getElementById("selectIngredientBtn")
-const outputSection = document.getElementById("output-section")
+const btns = document.querySelectorAll("button");
+const ingredientBtn = document.getElementById("ingredientBtn");
+const effectBtn = document.getElementById("effectBtn");
+const selectIngredientBtn = document.getElementById("selectIngredientBtn");
+const outputSection = document.getElementById("output-section");
 
 document.addEventListener('DOMContentLoaded', async function() {
+<<<<<<< HEAD
     await fetch('../data.csv')
         .then(response => response.text())
         .then(data => {
@@ -40,8 +68,26 @@ document.addEventListener('DOMContentLoaded', async function() {
             });
         })
         .catch(error => console.error('Error fetching the CSV file:', error));
+=======
+    try {
+        const response = await fetch('https://raw.githubusercontent.com/m-mfp/myPortfolio/data.csv');
+        const data = await response.text();
+        
+        Papa.parse(data, {
+            header: true,
+            complete: function(results) {
+                btns.forEach((btn) => {
+                    btn.addEventListener("click", () => {
+                        handleBtn(results.data, btn);
+                    });
+                });
+            }
+        });
+    } catch (error) {
+        console.error('Error fetching the CSV file:', error);
+    }
+>>>>>>> b2d57d62a91a014aba56a770bcc6367f145e6df8
 });
-
 
 function handleBtn(data, btn) {
 
