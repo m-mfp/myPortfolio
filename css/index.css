@@ -11,8 +11,8 @@
     --dark-pink: hsl(327 86.8% 27.7%);
     --bright-pink: hsl(337 100% 61.8%);
     --light-pink: hsla(337, 37%, 66%, 0.89);
-    --body-bg-light: url(../images/marble-3534940.jpg);
-    --body-bg-dark: url(../images/night-sky-image.jpg);
+    --body-bg-light: url(../images/bg_white_marble.jpg);
+    --body-bg-dark: url(../images/bg_night-sky.jpg);
 }
 
 /* Fonts */
