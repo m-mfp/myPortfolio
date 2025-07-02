@@ -222,6 +222,13 @@ function createPotion(selectElement, data) {
     addEffect.id = "add-effect"
     outputSection.insertBefore(addEffect, outputSection.children[1]);
 
+    // CREATE COUNTER
+    var ingredientsCounter = document.createElement("span")
+    ingredientsCounter.id = "ingredients-counter"
+    ingredientsCounter.innerText = "0 ingredients"
+    outputSection.insertBefore(ingredientsCounter, outputSection.children[2])
+    // CREATE COUNTER
+
     ingredientBtn.disabled = !ingredientBtn.disabled;
     effectBtn.disabled = !effectBtn.disabled;
     createPotionBtn.classList.toggle("pressed")
@@ -256,11 +263,8 @@ function createPotion(selectElement, data) {
                     removeHighlight(data, commonIngredients)
                 })
             }
-
             
-            if (output.children.length > 1) {
-                var commonIngredients = findCommonIng(data, output)
-            }
+            var commonIngredients = findCommonIng(data, output)
 
             // Finding common ingredientes between selected effects
             findCommonIngredients(output, commonIngredients)
@@ -278,10 +282,8 @@ function removeHighlight(data, commonIngredients) {
         }
     }
 
-    if (output.children.length > 1) {
-        commonIngredients = findCommonIng(data, output);
-        findCommonIngredients(output, commonIngredients);
-    }
+    commonIngredients = findCommonIng(data, output);
+    findCommonIngredients(output, commonIngredients);
 }
 
 function findCommonIngredients(output, commonIngredients) {
@@ -307,6 +309,21 @@ function findCommonIngredients(output, commonIngredients) {
             }
         }
     }
+    
+    let ingredientsCounter = document.getElementById("ingredients-counter")
+    if (commonIngredients) {
+        ingredientsCounter.innerText = `${commonIngredients.size} ingredients`
+        if (commonIngredients.size > 3) {
+            ingredientsCounter.style.color = "var(--dark-pink)"
+            ingredientsCounter.style.textShadow = "1px 0 8px var(--bright-pink)"
+        } else if (commonIngredients.size > 0) {
+            ingredientsCounter.style.color = "var(--dark-gray)"
+            ingredientsCounter.style.textShadow = "1px 0 8px green"
+        } else {
+            ingredientsCounter.style.textShadow = "none"
+        }
+    } 
+
     commonIngredients = []
 }
 
