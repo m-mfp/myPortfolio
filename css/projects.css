@@ -334,6 +334,7 @@ button:disabled {
     text-shadow: 1px 0 5px var(--lighter-gray);
 }
 
+/* small-close-btn */
 span {
     position: relative;
     height: 30px;
@@ -423,6 +424,18 @@ footer div {
         margin: 5px;
     }
 
+    #add-effect {
+        width: 100px;
+        padding: 0.6rem 0;
+        margin: 0 0 1rem 0;
+    }
+
+    #add-effect::before {
+        background-size: 14px 14px;
+        width: 14px; 
+        height: 14px;
+    }
+
     /* output */
     .output {
         max-width: 400px;
@@ -444,17 +457,7 @@ footer div {
         min-height: 60px;
     }
 
-    #add-effect {
-        width: 100px;
-        padding: 0.6rem 0;
-        margin: 0;
-    }
 
-    #add-effect::before {
-        background-size: 14px 14px;
-        width: 14px; 
-        height: 14px;
-    }
 
     /* footer */
     footer {
