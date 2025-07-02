@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 handleBtn(data, btn)
             })
         })
-
     })
     .catch(function(error) {
         console.error('Error loading the CSV file:', error);
@@ -113,6 +112,15 @@ function handleBtn(data, btn) {
                 }, 2000)
             } else {
                 displayEffectData(data, selectElement, e.target.id)
+                
+                let newId = selectElement.value.toLowerCase().replace(/\s+/g, "-")
+                document.getElementById(newId).addEventListener("click", (e) => {
+                    
+                    e.target.parentNode.remove()
+                })
+                
+
+
                 if (output.children.length > 1) {
                     var commonIngredients = findCommonIng(data, output)
                 }
@@ -232,7 +240,6 @@ function displayEffectData(data, input, btn=null) {
 
         div = document.createElement("div")
         div.classList.add("input")
-        // div.id = input.value.toLowerCase().replace(/\s+/g, "-");
         div.innerHTML = `<h2>${input.value}</h2>`;
         output.appendChild(div)
 
@@ -242,6 +249,8 @@ function displayEffectData(data, input, btn=null) {
             div.innerHTML += `<p>${ing}</p>`
         });
         output.appendChild(div)
+
+        
 
     } else if (btn == "add-effect") {
         // Create Potion
@@ -259,15 +268,17 @@ function displayEffectData(data, input, btn=null) {
             div = document.createElement("div")
             div.classList.add("input")
             div.classList.add("potion")
-            div.id = input.value.toLowerCase().replace(/\s+/g, "-");
+            let newId = input.value.toLowerCase().replace(/\s+/g, "-")
+            // div.id = newId;
             div.innerHTML = `<h2>${input.value}</h2>`;
             output.appendChild(div)
 
             // close btn
-            const closeBtn = document.createElement("span")
-            closeBtn.classList.add("small-close-btn")
-            closeBtn.innerHTML = "&#10006;";
-            div.appendChild(closeBtn)
+            createCloseBtn(div, newId)
+            // const closeBtn = document.createElement("span")
+            // closeBtn.classList.add("small-close-btn")
+            // closeBtn.innerHTML = "&#10006;";
+            // div.appendChild(closeBtn)
 
 
             // append the ingredients
@@ -277,10 +288,16 @@ function displayEffectData(data, input, btn=null) {
                 div.innerHTML += `<p>${ing}</p>`
             });
             output.appendChild(div)
-
-
         }
     }
+}
+
+function createCloseBtn(div, effect) {
+    const closeBtn = document.createElement("span")
+    closeBtn.classList.add("small-close-btn")
+    closeBtn.id = effect
+    closeBtn.innerHTML = "&#10006;";
+    div.appendChild(closeBtn)
 }
 
 // Find Effects for given Ingredient
@@ -302,26 +319,3 @@ function findIngredients(data, effect) {
     });
     return ingredientList
 }
-
-
-/* 
-<div class="input" id="cure-disease">
-    <h2>Cure Disease</h2>
-    <span class="small-close-btn"></span>
-    <p>Charred Skeever Hide</p>
-    <p>Hawk Feathers</p>
-    <p>Mudcrab Chitin</p>
-    <p>Vampire Dust</p>
-    <p>Felsaad Tern Feathers</p>
-    <p>Chokeweed</p>
-    <p>Hunger Tongue</p>
-    <p>Juvenile Mudcrab</p>
-    <p>Red Kelp Gas Bladder</p>
-    <p>Scrib Jelly</p>
-    <p>Spadefish</p>
-    <p>Withering Moon</p>
-</div>
-<div class="input" id="damage-health">
-    <h2>Damage Health</h2>
-    <span id="small-close-btn"></span>
-</div> */
