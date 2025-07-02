@@ -24,8 +24,6 @@ const createPotionBtn = document.getElementById("createPotionBtn");
 const selectIngredientBtn = document.getElementById("selectIngredientBtn");
 const outputSection = document.getElementById("output-section");
 
-var commonIngredients = {}
-
 document.addEventListener('DOMContentLoaded', function() {
     d3.csv("./data.csv")
     .then(function(data) {
@@ -51,6 +49,7 @@ function handleBtn(data, btn) {
     selectElement.classList.add("selectBtn")
     outputSection.insertBefore(selectElement, outputSection.firstChild);
 
+    // Find Effects for an Ingredient
     if (btn.id == "ingredientBtn") {
         selectElement.id = "selectIngredientBtn"
         fillIngredientSelectBtn(data, selectElement)
@@ -64,6 +63,8 @@ function handleBtn(data, btn) {
         selectElement.addEventListener("change", () => {
             displayIngredientData(data, selectElement)
         })
+
+    // Find ingredients for an Effect
     } else if (btn.id == "effectBtn") {
         selectElement.id = "selectEffectBtn"
         fillEffectSelectBtn(data, selectElement)
@@ -77,15 +78,18 @@ function handleBtn(data, btn) {
         selectElement.addEventListener("change", () => {
             displayEffectData(data, selectElement, null)
         })
+
+    // Create Potion from selected effects
     } else if (btn.id == "createPotionBtn") {
+
         selectElement.id = "selectEffectBtn"
         fillEffectSelectBtn(data, selectElement)
 
-        var addElement = document.createElement("button")
-        addElement.classList.add("button")
-        addElement.innerText = "Add Effect"
-        addElement.id = "add-effect"
-        outputSection.insertBefore(addElement, outputSection.children[1]);
+        var addEffect = document.createElement("button")
+        addEffect.classList.add("button")
+        addEffect.innerText = "Add Effect"
+        addEffect.id = "add-effect"
+        outputSection.insertBefore(addEffect, outputSection.children[1]);
 
         ingredientBtn.disabled = !ingredientBtn.disabled;
         effectBtn.disabled = !effectBtn.disabled;
@@ -95,7 +99,7 @@ function handleBtn(data, btn) {
         selectElement.value = "-"
         output.innerHTML = '';
 
-        addElement.addEventListener("click", (e) => {
+        addEffect.addEventListener("click", (e) => {
             if (selectElement.value == "-") {
                 const alertModal = document.getElementById("alert-modal")
                 alertModal.innerHTML = `
@@ -109,9 +113,61 @@ function handleBtn(data, btn) {
                 }, 2000)
             } else {
                 displayEffectData(data, selectElement, e.target.id)
+                if (output.children.length > 1) {
+                    var commonIngredients = findCommonIng(data, output)
+                }
+                
+                for (let child of output.children) {
+                    for (let p in child.children) {
+                        let ingredient = child.children[p]
+                        if (p < 2 || !ingredient.innerText) {continue}
+
+                        if (commonIngredients){
+                            if (commonIngredients.has(ingredient.innerText)) {
+                                ingredient.classList.add("common-ingredient-tag")
+                            }
+                        }
+                    }
+                }
+                
+                // Move non common ingredients to the end of the list
+                const potionDiv = document.querySelectorAll('.potion');
+                for (let a of potionDiv) {
+                    let b = a.querySelectorAll("p")
+                    for (let p of b) {
+                        if (p.className == "") {
+                            p.parentNode.appendChild(p)
+                        }
+                    }
+                }
             }
         })
-}}
+    }
+}
+
+
+function findCommonIng(data, output) {
+    let allIngredients = [];
+    for (let child of output.children) {
+        let effect = child.children[0].innerText;
+        let ingList = findIngredients(data, effect);
+        allIngredients.push(ingList);
+    }
+
+    let commonIngredients = [];
+    for (let i = 0; i < allIngredients.length; i++) {
+        for (let j = i + 1; j < allIngredients.length; j++) {
+            for (let a of allIngredients[i]) {
+                for (let b of allIngredients[j]) {
+                    if (a === b) {
+                        commonIngredients.push(a);
+                    }
+                }
+            }
+        }
+    }
+    return new Set(commonIngredients);
+}
 
 function fillIngredientSelectBtn(data, selectElement) {
     selectElement.innerHTML = `
@@ -176,18 +232,19 @@ function displayEffectData(data, input, btn=null) {
 
         div = document.createElement("div")
         div.classList.add("input")
-        div.id = input.value.toLowerCase().replace(/\s+/g, "-");
+        // div.id = input.value.toLowerCase().replace(/\s+/g, "-");
         div.innerHTML = `<h2>${input.value}</h2>`;
         output.appendChild(div)
 
         const ingredientList = findIngredients(data, input.value)
+        ingredientList.sort()
         ingredientList.forEach(ing => {
             div.innerHTML += `<p>${ing}</p>`
         });
         output.appendChild(div)
 
     } else if (btn == "add-effect") {
-        // CREATE POTION
+        // Create Potion
         if (output.children.length == 3) {
             const alertModal = document.getElementById("alert-modal")
             alertModal.innerHTML = `
@@ -201,6 +258,7 @@ function displayEffectData(data, input, btn=null) {
         } else {
             div = document.createElement("div")
             div.classList.add("input")
+            div.classList.add("potion")
             div.id = input.value.toLowerCase().replace(/\s+/g, "-");
             div.innerHTML = `<h2>${input.value}</h2>`;
             output.appendChild(div)
@@ -214,6 +272,7 @@ function displayEffectData(data, input, btn=null) {
 
             // append the ingredients
             const ingredientList = findIngredients(data, input.value)
+            ingredientList.sort()
             ingredientList.forEach(ing => {
                 div.innerHTML += `<p>${ing}</p>`
             });
@@ -243,82 +302,6 @@ function findIngredients(data, effect) {
     });
     return ingredientList
 }
-
-
-
-
-// function findCommonIngredients(input, ingredientList, div) {
-//     commonIngredients[input] = ingredientList;
-
-//     var result = []
-
-//     if (div.children.length == 1) {
-//         return null;
-//     } else {
-//         const commonValues = [];
-//         const keys = Object.keys(commonIngredients);
-
-//         for (let i = 0; i < keys.length; i++) {
-//             for (let j = i + 1; j < keys.length; j++) {
-//                 const firstList = commonIngredients[keys[i]];
-//                 const secondList = commonIngredients[keys[j]];
-//                 const commonSet = new Set(firstList);
-//                 const commonInBoth = secondList.filter(item => commonSet.has(item));
-
-//                 if (commonInBoth.length > 0) {
-//                     commonValues.push({
-//                         keys: [keys[i], keys[j]],
-//                         common: commonInBoth
-//                     });
-//                 }
-
-//                 if (keys.length === 3) {
-//                     for (let k = j + 1; k < keys.length; k++) {
-//                         const thirdList = commonIngredients[keys[k]];
-//                         const commonInThree = commonInBoth.filter(item => thirdList.includes(item));
-
-//                         if (commonInThree.length > 0) {
-//                             commonValues.push({
-//                                 keys: [keys[i], keys[j], keys[k]],
-//                                 common: commonInThree
-//                             });
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-        
-//         commonValues.forEach(({ _, common }) => {
-//             result.push(...common)
-//         });
-//     }
-//     return new Set(result)
-// }
-
-
-
-
-
-// function getCommonIngredients(ingredientList, output) {
-
-//     commonIngredients
-
-//     for (let child of output.children) {
-//         const effect = child.firstChild.innerText
-//         console.log("Effect:", effect)
-//         for (let el in child.children) {
-//             const ing = child.children[el].innerText
-//             if (ing) {
-//                 if (ingredientList.includes(ing)) {
-//                     console.log("ingredientList contains:", ing)
-//                 }
-                
-//             }
-            
-//         }
-//     }
-// }
-
 
 
 /* 

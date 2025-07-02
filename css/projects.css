@@ -8,6 +8,7 @@
     --white: hsl(0, 0%, 90%);
     --dark-gray: hsl(360 0% 9%);
     --light-gray: hsl(360 0% 40%);
+    --lighter-gray: hsl(0, 0%, 61%);
     --dark-pink: hsl(327 86.8% 27.7%);
     --bright-pink: hsl(337 100% 61.8%);
     --light-pink: hsla(337, 37%, 66%, 0.89);
@@ -256,35 +257,6 @@ button:disabled {
     border: 1px solid var(--light-gray);
 }
 
-.input {
-    max-height: 800px;
-    width: 25%;
-    max-width: 300px;
-    margin: 0 auto;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    flex-grow: 1;
-    overflow-y: scroll;
-}
-
-.input h2 {
-    border-bottom: 1px dashed gray;
-    padding: 1rem;
-    max-height: 120px;
-    min-height: 120px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-.input p {
-    padding: 0.2rem;
-}
-
 #add-effect {
     width: 155px;
 }
@@ -319,6 +291,47 @@ button:disabled {
 #alert-modal.show {
     opacity: 1;
     transition: opacity 1s ease;
+}
+
+.input {
+    max-height: 800px;
+    width: 25%;
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex-grow: 1;
+    overflow-y: scroll;
+}
+
+.input h2 {
+    border-bottom: 1px dashed gray;
+    padding: 1rem;
+    max-height: 120px;
+    min-height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.input p {
+    padding: 0.2rem;
+}
+
+.common-ingredient-tag {
+    font-size: 1.3rem;
+    text-shadow: 1px 1px 2px var(--light-gray);
+    color: var(--bright-pink);
+}
+
+.potion p:not(.common-ingredient-tag) {
+    font-size: 0.9rem;
+    color: var(--lighter-gray);
+    text-shadow: 1px 0 5px var(--lighter-gray);
 }
 
 span {
