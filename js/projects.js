@@ -86,15 +86,8 @@ function fillIngredientSelectBtn(data, selectElement) {
 
 // Display Ingredient Data
 function displayIngredientData(data, input) {
-    const selectId = input.id;
-    switch (selectId) {
-        case 'selectIngredientBtn':
-            var row = findEffect(data, input.value)
-            break;
-        case 'selectEffectBtn':
-            break
-        default:
-            break;
+    if (input.id == "selectIngredientBtn") {
+        var row = findEffect(data, input.value)
     }
 
     output.innerHTML = '';
@@ -186,36 +179,25 @@ function displayEffectData(data, input, btn=null) {
 
     } else if (btn == "add-effect") {
         // Create Potion
-        if (output.children.length == 3) {
-            const alertModal = document.getElementById("alert-modal")
-            alertModal.innerHTML = `
-                <h3>Too many Effects!</h3>
-                <p>The max number of effects per potion is 3.</p>
-            `
-            alertModal.classList.add("show")
-            setTimeout(() => {
-                alertModal.classList.remove("show")
-            }, 2000)
-        } else {
-            div = document.createElement("div")
-            div.classList.add("input")
-            div.classList.add("potion")
-            let newId = input.value.toLowerCase().replace(/\s+/g, "-")
-            // div.id = newId;
-            div.innerHTML = `<h2>${input.value}</h2>`;
-            output.appendChild(div)
 
-            // close btn
-            createCloseBtn(div, newId)
+        div = document.createElement("div")
+        div.classList.add("input")
+        div.classList.add("potion")
+        let newId = input.value.toLowerCase().replace(/\s+/g, "-")
+        div.innerHTML = `<h2>${input.value}</h2>`;
+        output.appendChild(div)
 
-            // append the ingredients
-            const ingredientList = findIngredients(data, input.value)
-            ingredientList.sort()
-            ingredientList.forEach(ing => {
-                div.innerHTML += `<p>${ing}</p>`
-            });
-            output.appendChild(div)
-        }
+        // close btn
+        createCloseBtn(div, newId)
+
+        // append the ingredients
+        const ingredientList = findIngredients(data, input.value)
+        ingredientList.sort()
+        ingredientList.forEach(ing => {
+            div.innerHTML += `<p>${ing}</p>`
+        });
+        output.appendChild(div)
+
     }
 }
 
@@ -223,7 +205,7 @@ function displayEffectData(data, input, btn=null) {
 function createCloseBtn(div, effect) {
     const closeBtn = document.createElement("span")
     closeBtn.classList.add("small-close-btn")
-    closeBtn.id = effect
+    closeBtn.classList.add(effect)
     closeBtn.innerHTML = "&#10006;";
     div.appendChild(closeBtn)
 }
@@ -264,17 +246,22 @@ function createPotion(selectElement, data) {
             displayEffectData(data, selectElement, e.target.id)
             
             let newId = selectElement.value.toLowerCase().replace(/\s+/g, "-")
-            document.getElementById(newId).addEventListener("click", (e) => {
-                e.target.parentNode.remove()
 
-                // Recalculate common ingredients
-                removeHighlight(data, commonIngredients)
-            })
+            const allCloseBtns = document.querySelectorAll(`.${newId}`)
+            for (let btn of allCloseBtns) {
+                btn.addEventListener("click", (e) => {
+                    e.target.parentNode.remove()
+
+                    // Recalculate common ingredients
+                    removeHighlight(data, commonIngredients)
+                })
+            }
+
             
             if (output.children.length > 1) {
                 var commonIngredients = findCommonIng(data, output)
             }
-            
+
             // Finding common ingredientes between selected effects
             findCommonIngredients(output, commonIngredients)
         }

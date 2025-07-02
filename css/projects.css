@@ -336,18 +336,12 @@ button:disabled {
 
 /* small-close-btn */
 span {
-    position: relative;
-    height: 30px;
-    width: 30px;
-    top: -110px;
-    left: 115px;
+    order: -1;
     cursor: pointer;
     font-size: 1.5rem;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 0.3rem 0 0 0.3rem;
     color: var(--bright-pink);
+    align-self: flex-start;
 }
 
 /* Footer */
