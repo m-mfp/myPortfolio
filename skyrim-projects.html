@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/projects.css">
+    <link rel="stylesheet" type="text/css" href="css/skyrim-projects.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="js/projects.js" defer></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script> <!-- NEW -->
+    <script src="js/skyrim-projects.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -26,14 +26,19 @@
     </header>
 
     <main>
-        <h1>👩🏼‍💻 My Projects</h1>
-        <h2>Feel free to explore!</h2>
+        <h1>👩🏼‍💻 Skyrim Alchemy Scrapper...</h1>
 
         <div id="buttons">
-            <a href="skyrim-projects.html">Skyrim Alchemy Scrapper</a>
-            <!-- <button id="ingredientBtn">Choose Ingredient</button>
+            <button id="ingredientBtn">Choose Ingredient</button>
             <button id="effectBtn">Choose Effect</button>
-            <button id="createPotionBtn">Create Potion</button> -->
+            <button id="createPotionBtn">Create Potion</button>
+        </div>
+
+        <section class="hidden" id="output-section">
+            <div class="output"></div>
+        </section>
+
+        <div id="alert-modal">
         </div>
 
     </main>

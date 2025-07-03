@@ -17,15 +17,15 @@
 
 /* Fonts */
 .roboto-condensed-regular {
-  font-family: "Roboto Condensed", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
+    font-family: "Roboto Condensed", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
 }
 .poiret-one-regular {
-  font-family: "Poiret One", sans-serif;
-  font-weight: 500;
-  font-style: normal;
+    font-family: "Poiret One", sans-serif;
+    font-weight: 500;
+    font-style: normal;
 }
 
 .dark {
@@ -98,29 +98,29 @@ body {
 
 /* dark-mode button */
 #toggle-btn {
-  width: 60px;
-  height: 30px;
-  background-color: var(--dark-gray);
-  border-radius: 30px;
-  position: relative;
-  cursor: pointer;
-  transition: background-color 0.3s;
+    width: 60px;
+    height: 30px;
+    background-color: var(--dark-gray);
+    border-radius: 30px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 #toggle-btn::before {
-  content: '';
-  width: 22px;
-  height: 22px;
-  background-color: var(--white);
-  border-radius: 50%;
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  transition: transform 0.3s;
+    content: '';
+    width: 22px;
+    height: 22px;
+    background-color: var(--white);
+    border-radius: 50%;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    transition: transform 0.3s;
 }
 
 #toggle-btn.dark::before {
-  transform: translateX(30px);
+    transform: translateX(30px);
 }
 
 
@@ -136,8 +136,8 @@ h1 {
 }
 
 #titles {
-  color: var(--dark-pink);
-  font-size: 2rem;
+    color: var(--dark-pink);
+    font-size: 2rem;
 }
 
 #titles a {
@@ -160,7 +160,7 @@ h1 {
 
 /* Tooltip styles */
 #titles a.show-tooltip::after {
-  display: inline-block;
+    display: inline-block;
 }
 
 #titles a::after {
@@ -180,10 +180,42 @@ h1 {
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
+/* UGLY IMAGE */
+#media-container {
+    width: 90%;
+    height: 60vh;
+    margin: 80px auto;
+}
+
+#media-container img {
+    position: relative;
+    z-index: -1;
+    opacity: 0.4;
+    height: 100%;
+    width: 100%;
+    margin: 2rem;
+}
+/* UGLY IMAGE */
+
 /* iframe */
 iframe {
-    height: 500px;
+    width: 350px;
+    height: 400px;
     border: none;
+    position: absolute;
+    z-index: 1;
+}
+
+#skyrim-project {
+    top: 600px;
+    left: 400px;
+    rotate: -5deg;
+}
+
+#future-projects {
+    top: 650px;
+    left: 600px;
+    rotate: +5deg;
 }
 
 /* About me section */
@@ -191,7 +223,13 @@ iframe {
     color: var(--light-gray);
     text-shadow: 1px 1px var(--dark-gray);
     margin-bottom: 150px;
+    height: auto;
+    width: 80vw;
+    margin: 0 auto;
 }
+
+
+
 
 #aboutme-section h2 {
     font-size: 2rem;
@@ -202,19 +240,19 @@ iframe {
     padding-top: 100px;
 }
 
-#aboutme-section img {
-    width: 60%;
-    border-radius: 50px;
-    margin: 2rem;
-}
-
 #aboutme-section p {
-    font-size: 1.7rem;
-    font-weight: 500;
-    padding: 1rem;
+    font-size: 1.8rem;
+    padding: 2rem;
+    padding-top: 3rem;
+    text-align: justify;
+    line-height: 3rem;
+    word-spacing: 0.6rem;
     width: 80%;
     margin: 0 auto;
-    border-radius: 20px;
+}
+
+#aboutme-section p:last-of-type {
+    margin-bottom: 100px; /* Add margin to the last paragraph */
 }
 
 #aboutme-section.dark {
@@ -222,22 +260,10 @@ iframe {
     text-shadow: 1px 1px var(--light-gray);
 }
 
-/* UGLY IMAGE */
-#media-container {
-    width: 90%;
-    margin: 80px auto;
-}
-
-#media-container img {
-    border-radius: 50%;
-    width: 100%;
-}
-/* UGLY IMAGE */
-
-
 /* Footer */
 footer {
     width: 50%;
+    max-width: 600px;
     height: 8%;
     position: fixed;
     bottom: 0;
@@ -265,11 +291,7 @@ footer div {
 
 #social-media-links a:hover {
     transform: scale(1.2);
-    /* padding: 0 30px; */
 }
-
-
-
 
 /* SMARTPHONE */
 @media (max-width: 768px) {
