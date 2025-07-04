@@ -29,3 +29,19 @@ titlesLink.forEach((link) => {
         link.classList.remove("show-tooltip");
     });
 });
+
+
+// videos
+const skyrimVideo = document.querySelector(".skyrim-project"); // Use the correct class selector
+
+skyrimVideo.addEventListener('play', () => {
+    skyrimVideo.classList.add("playing");
+});
+
+skyrimVideo.addEventListener('pause', () => {
+    skyrimVideo.classList.remove("playing"); // Remove the class when paused
+});
+
+skyrimVideo.addEventListener('ended', () => {
+    skyrimVideo.classList.remove("playing"); // Remove the class when ended
+});
