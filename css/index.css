@@ -256,7 +256,7 @@ h1 {
     padding-top: 3rem;
     text-align: justify;
     line-height: 3rem;
-    word-spacing: 0.6rem;
+    word-spacing: 0.4rem;
     width: 80%;
     margin: 0 auto;
 }
@@ -334,19 +334,45 @@ footer div {
         padding: 0;
     }
 
-    #skyrim-project {
+    #media-container img {
+        display: none;
+    }
+
+    .skyrim-project {
         position: static;
-        height: 230px;
+        width: 90%;
+        max-width: none;
+        height: auto;
         margin: 0 auto;
-        /* margin-bottom:; */
+        margin-top: 2rem;
+        top: auto;
+        left: auto;
+        transform: rotate(0);
+    }
+
+    .fallout-project {
+        position: static;
+        width: 90%;
+        max-width: none;
+        height: auto;
+        margin: 0 auto;
+        margin-top: 2rem;
+        top: auto;
+        left: auto;
+        transform: rotate(0);
     }
 
     #aboutme-section {
-        /* padding-bottom: 100px; */
+        width: 100vw;
     }
 
     #aboutme-section h2 {
+        padding-top: 1rem;
         font-size: 1.5rem;
+    }
+
+    #aboutme-section p {
+        font-size: 1.3rem;
     }
 
     #aboutme-section img {
@@ -358,7 +384,4 @@ footer div {
         font-size: 0.7rem;
     }
 
-    iframe {
-        display: none;
-    }
 }
