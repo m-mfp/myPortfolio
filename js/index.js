@@ -31,17 +31,14 @@ titlesLink.forEach((link) => {
 });
 
 
-// videos
-const skyrimVideo = document.querySelector(".skyrim-project"); // Use the correct class selector
+const handleVideoEvents = (videoElement) => {
+    videoElement.addEventListener('play', () => videoElement.classList.add("playing"));
+    videoElement.addEventListener('pause', () => videoElement.classList.remove("playing"));
+    videoElement.addEventListener('ended', () => videoElement.classList.remove("playing"));
+}
 
-skyrimVideo.addEventListener('play', () => {
-    skyrimVideo.classList.add("playing");
-});
+const skyrimVideo = document.querySelector(".skyrim-project");
+const falloutVideo = document.querySelector(".fallout-project");
 
-skyrimVideo.addEventListener('pause', () => {
-    skyrimVideo.classList.remove("playing"); // Remove the class when paused
-});
-
-skyrimVideo.addEventListener('ended', () => {
-    skyrimVideo.classList.remove("playing"); // Remove the class when ended
-});
+handleVideoEvents(skyrimVideo);
+handleVideoEvents(falloutVideo);
