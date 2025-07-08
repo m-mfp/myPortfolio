@@ -355,11 +355,11 @@ footer div {
         width: 90%;
         max-width: none;
         height: auto;
-        margin: 0 auto;
-        margin-top: 2rem;
+        margin: 2rem auto;
         top: auto;
         left: auto;
         transform: rotate(0);
+        clear: both;
     }
 
     #aboutme-section {
