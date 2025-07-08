@@ -363,11 +363,11 @@ footer div {
     }
 
     #aboutme-section {
+        margin-top: 100px;
         width: 100vw;
     }
 
     #aboutme-section h2 {
-        /* padding-top: 1rem; */
         font-size: 1.5rem;
     }
 
