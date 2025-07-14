@@ -1,8 +1,8 @@
 /* Root variables */
 :root {
-  --color-primary: #ff5e00;           
-  --color-primary-dark: #cc4d00;     
-  --color-primary-light: #ff8c33;   
+  --color-primary: #ff5e00;
+  --color-primary-dark: #cc4d00;
+  --color-primary-light: #ff8c33;
   --color-bg-light: #f9f9f9;
   --color-bg-dark: #121212;
   --color-text-light: #222;
@@ -23,7 +23,7 @@
 
 /* === Body === */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #ffffde;
   background-image: url("../images/cardboard.png");
   color: var(--color-text-light);
@@ -63,7 +63,7 @@ body {
 
 /* Navigation links */
 .navbar a {
-  font-family: 'MedievalSharp', monospace;
+  font-family: "MedievalSharp", monospace;
   color: var(--color-text-light);
   text-shadow: 1px 0 5px var(--color-text-dark);
   text-decoration: none;
@@ -106,12 +106,12 @@ body {
   background-color: var(--color-footer-bg-dark);
 }
 
-
 /* Main container */
 
 /* Headings */
-h1, h2 {
-  font-family: 'MedievalSharp', cursive;
+h1,
+h2 {
+  font-family: "MedievalSharp", cursive;
   color: var(--color-primary-dark);
   text-shadow: 1px 1px 0 var(--color-accent-yellow);
 }
@@ -163,13 +163,13 @@ h1, h2 {
   background: var(--color-primary-light);
   color: var(--color-text-dark);
   text-shadow: 1px 1px 2px var(--color-footer-bg-dark);
-  font-family: 'MedievalSharp', cursive;
+  font-family: "MedievalSharp", cursive;
   font-weight: 600;
   font-size: 1rem;
   letter-spacing: 0.1rem;
   border: 2px solid var(--color-primary-dark);
   border-radius: 12px;
-  box-shadow: 0 3px 10px var(--color-primary-dark)88;
+  box-shadow: 0 3px 10px var(--color-primary-dark) 88;
   padding: 0.7rem 1.5rem;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -204,7 +204,7 @@ h1, h2 {
 }
 
 .projects-summary a {
-  font-family: 'MedievalSharp', monospace;
+  font-family: "MedievalSharp", monospace;
   color: var(--color-text-light);
   text-shadow: 1px 0 5px var(--color-text-dark);
   text-decoration: none;
@@ -254,7 +254,7 @@ footer {
 .footer-icons svg {
   filter: none;
   color: var(--color-primary);
-  fill: var(--color-primary); 
+  fill: var(--color-primary);
   stroke: var(--color-primary);
 }
 
@@ -323,7 +323,6 @@ body.dark-mode footer {
   background-color: var(--color-footer-bg-dark);
   color: var(--color-footer-text-dark);
 }
-
 
 /* Responsive adjustments */
 @media (max-width: 768px) {

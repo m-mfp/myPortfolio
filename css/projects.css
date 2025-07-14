@@ -1,8 +1,8 @@
 /* Root variables */
 :root {
-  --color-primary: #ff5e00;           
-  --color-primary-dark: #cc4d00;     
-  --color-primary-light: #ff8c33;   
+  --color-primary: #ff5e00;
+  --color-primary-dark: #cc4d00;
+  --color-primary-light: #ff8c33;
   --color-bg-light: #f9f9f9;
   --color-bg-dark: #121212;
   --color-text-light: #222;
@@ -62,7 +62,7 @@ body {
 
 /* Navigation links */
 .navbar a {
-  font-family: 'MedievalSharp', monospace;
+  font-family: "MedievalSharp", monospace;
   color: var(--color-text-light);
   text-shadow: 1px 0 5px var(--color-text-dark);
   text-decoration: none;
@@ -111,13 +111,13 @@ body {
   margin: 2rem auto;
   padding: 0 1rem;
   flex-grow: 1;
-  font-family: 'Press Start 2P', monospace;
+  font-family: "Press Start 2P", monospace;
   color: var(--color-primary-dark);
 }
 
 /* Page Heading */
 h1 {
-  font-family: 'Press Start 2P', monospace;
+  font-family: "Press Start 2P", monospace;
   font-size: 2.2rem;
   margin-bottom: 1.5rem;
   color: var(--color-primary);
@@ -164,7 +164,7 @@ h1 {
   margin-bottom: 1rem;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .responsive-video {
@@ -254,7 +254,7 @@ footer {
 .footer-icons svg {
   filter: none;
   color: var(--color-primary);
-  fill: var(--color-primary); 
+  fill: var(--color-primary);
   stroke: var(--color-primary);
 }
 
@@ -323,7 +323,6 @@ body.dark-mode footer {
 
 /* Responsive adjustments */
 @media (max-width: 600px) {
-
   html {
     font-size: 10px;
   }
@@ -333,5 +332,4 @@ body.dark-mode footer {
     height: 40px;
     display: block;
   }
-
 }
