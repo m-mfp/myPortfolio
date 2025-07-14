@@ -1,19 +1,41 @@
-
 // dark mode
-const body = document.body
-const darkModeBtn = document.getElementById("switch-btn")
-const toggleBtn = document.getElementById("toggle-btn");
+const toggleBtn = document.querySelectorAll('#darkModeToggle');
 
-toggleBtn.addEventListener("click", () => {
-    const isDarkMode = body.classList.contains("dark")
-    if (isDarkMode) {
-        body.classList.remove('dark')
-        toggleBtn.classList.remove('dark')
+function toggleDarkMode() {
+  document.body.classList.toggle('dark-mode');
+
+  // Change icon
+  toggleBtn.forEach(btn => {
+    if (document.body.classList.contains('dark-mode')) {
+      btn.textContent = '☀️'; // sun icon
     } else {
-        body.classList.add('dark')
-        toggleBtn.classList.add('dark')
+      btn.textContent = '🌙'; // moon icon
     }
-})
+  });
+
+  // Save preference to localStorage
+  if (document.body.classList.contains('dark-mode')) {
+    localStorage.setItem('darkMode', 'enabled');
+  } else {
+    localStorage.removeItem('darkMode');
+  }
+}
+
+// Attach event listeners to all toggle buttons (for multiple pages)
+toggleBtn.forEach(btn => {
+  btn.addEventListener('click', toggleDarkMode);
+});
+
+// Load saved theme preference on page load
+window.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem('darkMode') === 'enabled') {
+    document.body.classList.add('dark-mode');
+    toggleBtn.forEach(btn => btn.textContent = '☀️');
+  } else {
+    toggleBtn.forEach(btn => btn.textContent = '🌙');
+  }
+});
+
 
 // Skyrim Alchemy Scrapper Functionalities
 const output = document.querySelector('.output');
@@ -25,12 +47,14 @@ const selectIngredientBtn = document.getElementById("selectIngredientBtn");
 const outputSection = document.getElementById("output-section");
 
 document.addEventListener('DOMContentLoaded', function() {
-    d3.csv("./data.csv")
+    d3.csv("../db/data.csv")
     .then(function(data) {
         btns.forEach((btn) => {
-            btn.addEventListener("click", () => {
-                handleBtn(data, btn)
-            })
+            if (btn.id != "darkModeToggle") {
+                btn.addEventListener("click", () => {
+                    handleBtn(data, btn)
+                }) 
+            } 
         })
     })
     .catch(function(error) {
@@ -178,8 +202,8 @@ function displayEffectData(data, input, btn=null) {
         output.appendChild(div)
 
     } else if (btn == "add-effect") {
-        // Create Potion
 
+        // Create Potion
         div = document.createElement("div")
         div.classList.add("input")
         div.classList.add("potion")
@@ -242,7 +266,7 @@ function createPotion(selectElement, data) {
             const alertModal = document.getElementById("alert-modal")
             alertModal.innerHTML = `
                 <h3>Choose an Effect!<h3>
-                <p>Needs to have at least 1 effect.<p>
+                <p>Needs to have en effect selected.<p>
             `
             alertModal.classList.add("show")
             setTimeout(() => {
@@ -314,10 +338,8 @@ function findCommonIngredients(output, commonIngredients) {
     if (commonIngredients) {
         ingredientsCounter.innerText = `${commonIngredients.size} ingredients`
         if (commonIngredients.size > 3) {
-            ingredientsCounter.style.color = "var(--dark-pink)"
-            ingredientsCounter.style.textShadow = "1px 0 8px var(--bright-pink)"
+            ingredientsCounter.style.textShadow = "1px 0 8px var(--color-primary-light)"
         } else if (commonIngredients.size > 0) {
-            ingredientsCounter.style.color = "var(--dark-gray)"
             ingredientsCounter.style.textShadow = "1px 0 8px green"
         } else {
             ingredientsCounter.style.textShadow = "none"

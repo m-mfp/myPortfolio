@@ -1,0 +1,565 @@
+/* Root variables */
+:root {
+  --color-primary: #ff5e00;           
+  --color-primary-dark: #cc4d00;     
+  --color-primary-light: #ff8c33;   
+  --color-bg-light: #f9f9f9;
+  --color-bg-dark: #121212;
+  --color-text-light: #222;
+  --color-text-dark: #eee;
+  --color-accent-yellow: #fff200;
+  --color-footer-bg-light: #eaeaea;
+  --color-footer-bg-dark: #222;
+  --color-footer-text-light: #555;
+  --color-footer-text-dark: #bbb;
+  --color-shadow-navbar-dark: #111a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+    text-align: center;
+    color: var(--color-footer-text-light);
+    font-family: "Pirata One", cursive;
+    position: relative;
+    color: var(--color-text-light);
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; 
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../images/skyrim-map.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+/* === Navbar === */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-primary);
+  padding: 0.5rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 3px solid var(--color-primary-dark);
+}
+
+/* Navbar left */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* Logo */
+.nav-logo img {
+  width: 50px;
+  height: 50px;
+  display: block;
+}
+
+/* Navigation links */
+.navbar a {
+  font-family: 'MedievalSharp', monospace;
+  color: var(--color-text-light);
+  text-shadow: 1px 0 5px var(--color-text-dark);
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 600;
+  transition: color 0.2s;
+  padding: 0 0.5em;
+  border-radius: 10px;
+}
+
+.navbar a.active {
+  text-decoration: underline;
+  color: var(--color-text-light);
+  text-shadow: 1px 0 5px var(--color-text-dark);
+  background-color: var(--color-primary-light);
+}
+
+.navbar a:hover,
+.navbar a:focus {
+  color: var(--color-accent-yellow);
+  outline: none;
+}
+
+/* Navbar right button */
+.nav-right button {
+  background-color: var(--color-footer-text-light);
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0 0.2rem 0.2rem 0;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.nav-right button:hover {
+  background-color: var(--color-footer-bg-dark);
+}
+
+.nav-right button:focus {
+  outline: 2px solid var(--color-accent-yellow);
+  background-color: var(--color-footer-bg-dark);
+}
+
+/* main section */
+h1 {
+    padding: 10px;
+    color: var(--color-footer-text-light);
+    margin-top: 2rem;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+
+.buttons button,
+#add-effect {
+    padding: 10px 15px;
+    width: 200px;
+    margin: 12px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    font-family: "Pirata One", cursive;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(220, 220, 220, 0.9), rgba(255, 255, 255, 0.9), rgba(220, 220, 220, 0.9));
+    border: 1px solid rgba(200, 200, 200, 0.5);
+    color: #333;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background 0.3s, box-shadow 0.3s, transform 0.3s, margin 0.3s;
+}
+
+
+.buttons button:hover,
+#add-effect:hover {
+    background: linear-gradient(135deg, #e0e0e0, #d0d0d0);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.buttons button:focus,
+#add-effect:hover {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(200, 200, 200, 0.5);
+}
+
+button.pressed {
+    transform: scale(1.2);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(150, 150, 150, 0.7);
+    margin: 10px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s, box-shadow 0.3s, transform 0.3s, border 0.3s;
+}
+
+button:disabled {
+    background: linear-gradient(135deg, #e0e0e0, #d0d0d0);
+    color: #999;
+    border: 1px solid rgba(200, 200, 200, 0.5);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* select buttons */
+.hidden {
+    display: none;
+}
+
+.selectBtn {
+    width: 270px;
+    margin: 20px;
+    text-align: center;
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: 900;
+    font-family: "Pirata One", cursive;
+    color: #333;
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s, box-shadow 0.3s, border-color 0.3s;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none; /* For Safari */
+    -moz-appearance: none; /* For Firefox */
+}
+
+.selectBtn option {
+    font-size: 0.7rem;
+    color: #333;
+    background-color: #ffffff;
+}
+
+.selectBtn:hover {
+    background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+    border-color: #bbb;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.selectBtn:focus {
+    outline: none;
+    border-color: #aaa;
+    box-shadow: 0 0 0 3px rgba(200, 200, 200, 0.5);
+}
+
+/* Output */
+.output {
+    max-width: 1200px;
+    min-width: 800px;
+    max-height: 800px;
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.output > div {
+    border: 1px solid var(--color-footer-text-light);
+    background-color:  	hsl(0, 0%, 33%, 0.3);
+}
+
+#add-effect {
+    width: 155px;
+}
+
+#ingredients-counter {
+    padding: 8px 15px;
+    width: 200px;
+    margin: 12px;
+    font-size: 1.3rem;
+    font-weight: 900;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(220, 220, 220, 0.9), rgba(255, 255, 255, 0.9), rgba(220, 220, 220, 0.9));
+    border: 1px solid rgba(200, 200, 200, 0.5);
+    color: var(--color-text-light);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    cursor: default;
+    transition: background 0.3s, box-shadow 0.3s, transform 0.3s, margin 0.3s;
+}
+
+#add-effect::before {
+    background-image: url("../images/plus.png");
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 20px; 
+    height: 20px;
+    content:"";
+    margin-right: 0.3rem;
+    vertical-align: middle;
+}
+
+#alert-modal {
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 100px;
+    width: 450px;
+    height: 90px;
+    padding: 0.5rem;
+    background-color: var(--color-footer-text-light);
+    color: var(--color-text-dark);
+    border-radius: 10px;
+    margin-left: -200px;
+    opacity: 0;
+    font-family: 'Nova Cut', cursive;
+}
+
+#alert-modal.show {
+    opacity: 1;
+    transition: opacity 1s ease;
+}
+
+.input {
+    max-height: 800px;
+    width: 25%;
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex-grow: 1;
+    overflow-y: scroll;
+}
+
+.input h2 {
+    border-bottom: 1px dashed gray;
+    padding-bottom: 0.3rem;
+    max-height: 120px;
+    min-height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+.input p {
+    padding: 0.2rem;
+    font-size: 1.1.rem;
+    font-weight: 100;
+}
+
+.common-ingredient-tag {
+    font-size: 1.3rem;
+    text-shadow: 1px 2px 0 var(--color-footer-text-light);
+    color: var(--color-primary);
+}
+
+.potion p:not(.common-ingredient-tag) {
+    font-size: 0.9rem;
+    color: var(--color-footer-text-dark);
+    text-shadow: 1px 0 4px var(--color-footer-bg-dark);
+}
+
+/* small-close-btn */
+span {
+    order: -1;
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 0.3rem 0 0 0.3rem;
+    color: var(--color-primary);
+    align-self: flex-start;
+}
+
+/* === Footer === */
+footer {
+  background-color: var(--color-footer-bg-light);
+  text-align: center;
+  padding: 1rem 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-footer-text-light);
+  margin-top: auto;
+  border-top: 3px solid var(--color-primary-dark);
+  background: #ede0c7;
+}
+
+.footer-icons {
+  margin-bottom: 0.5rem;
+}
+
+.footer-icons a {
+  margin: 0 0.5rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.footer-icons img,
+.footer-icons svg {
+  filter: none;
+  color: var(--color-primary);
+  fill: var(--color-primary);
+  stroke: var(--color-primary);
+}
+
+.footer-icons a:hover img,
+.footer-icons a:focus img {
+  filter: grayscale(0);
+}
+
+.footer-text {
+  font-style: italic;
+  color: #777;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-dark);
+}
+
+body.dark-mode .navbar {
+  background-color: #222;
+  box-shadow: 0 2px 8px var(--color-shadow-navbar-dark);
+}
+
+body.dark-mode .nav-logo-text {
+  color: var(--color-primary)80;
+  text-shadow: 1px 1px 0 var(--color-text-shadow-light, #fff);
+}
+
+body.dark-mode .navbar a {
+  color: var(--color-primary-light);
+}
+
+body.dark-mode .navbar a.active {
+  color: var(--color-primary);
+  text-shadow: 1px 0 1px var(--color-text-shadow-active, #1d0d00);
+  background: var(--color-accent-yellow);
+}
+
+body.dark-mode .navbar a:hover,
+body.dark-mode .navbar a:focus {
+  color: var(--color-accent-yellow);
+  background: #444;
+}
+
+body.dark-mode .nav-right button {
+  background-color: var(--color-footer-text-dark);
+}
+
+body.dark-mode .nav-right button:focus,
+body.dark-mode .nav-right button:hover {
+  background: var(--color-bg-light);
+}
+
+body.dark-mode h1 {
+  color: var(--color-text-dark);
+  text-shadow: 1px 1px var(--color-footer-text-light);
+}
+
+body.dark-mode h2 {
+  color: var(--color-primary-light);
+  text-shadow: 1px 1px var(--color-primary-dark);
+}
+
+body.dark-mode .common-ingredient-tag {
+  color: var(--color-primary-light);
+  text-shadow: 1px 0 3px var(--color-primary-dark);
+}
+
+body.dark-mode a {
+  color: var(--color-primary);
+}
+
+body.dark-mode .btn-link {
+  color: var(--color-text-light);
+}
+
+body.dark-mode .btn-link:hover,
+body.dark-mode .btn-link:focus {
+  background-color: var(--color-primary-dark);
+}
+
+/* Footer dark mode */
+body.dark-mode footer {
+  background-color: var(--color-footer-bg-dark);
+  color: var(--color-footer-text-dark);
+}
+
+body.dark-mode .footer-icons img {
+  filter: grayscale(0.8);
+}
+
+
+/* SMARTPHONE */
+@media (max-width: 768px) {
+    html {
+        font-size: 13px;
+        overflow-x: hidden;
+    }
+
+    body {
+        padding-top: 100px;
+    }
+
+    h1 {
+        padding-top: 0;
+        margin-top: 0;
+    }
+
+    /* header */
+    .navbar {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0.5rem 0.5rem;
+    }
+    .nav-left {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+    }
+    .nav-logo-text {
+        font-size: 1rem;
+    }
+    .navbar a {
+        font-size: 0.95rem;
+        margin-right: 0.5rem;
+    }
+
+    /* buttons */
+    #buttons {
+        display: flex;
+        flex-direction: column;
+        width: 150px;
+        margin: 0 auto;
+    }
+
+    button {
+        width: 100%;
+        font-size: 0.9rem;
+        margin: 5px;
+    }
+
+    #add-effect {
+        width: 100px;
+        padding: 0.6rem 0;
+        margin: 0 0 1rem 0;
+    }
+
+    #add-effect::before {
+        background-size: 14px 14px;
+        width: 14px; 
+        height: 14px;
+    }
+
+    /* output */
+    .output {
+        max-width: 400px;
+        min-width: 80px;
+        max-height: 250px;
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+    }
+    .input {
+        font-size: 0.8rem;
+        max-width: 200px;
+    }
+
+    .input h2 {
+        padding: 0.5rem;
+        max-height: 50px;
+        min-height: 60px;
+    }
+
+
+
+    /* footer */
+    footer {
+        font-size: 0.7rem;
+    }
+
+    #social-media-links a img {
+        width: 20px;
+    }
+}

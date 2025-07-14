@@ -1,63 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>About Me</title>
-    <script src="script.js" defer></script>
-
-    <link rel="stylesheet" href="css/index.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="skyrim-projects.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="skyrim-projects.js" defer></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Pirata+One&family=Press+Start+2P&display=swap" rel="stylesheet">
 
+    <title>Skyrim Project</title>
   </head>
 
   <body>
-    <header>
-      <nav class="navbar">
-          <div class="nav-left">
-              <span class="nav-logo">
-                  <img src="./images/logo.png" alt="Logo" />
-              </span>
-              <a href="index.html" class="active">HOME</a>
-              <a href="projects.html">PROJECTS</a>
-          </div>
-          <div class="nav-right">
-              <button id="darkModeToggle" aria-label="Toggle dark mode">🌙</button>
-          </div>
-      </nav>
-
-    </header>
-
-    <main class="about-container">
-      <section class="profile">
-        <img src="images/yourphoto.jpg" alt="Your Name" class="profile-pic" />
-        <div class="bio">
-          <h1>Hi there 👋, I'm Marcela</h1>
-          <p>I'm a passionate and beginner software developer currently focused on learning as much as possible and getting a job. I've studied Golang, Python, and front-end languages like HTML, CSS, and JavaScript. I also acquired a cerficate as a Data Scientist, so I know how to read and process data effectively. Right now, I'm concentrating on learning back-end development and APIs, especially with Go.</p>
-          <a href="./db/MarcelaMartinCV.pdf" download class="btn-cv">Download My CV</a>
+  <header>
+    <nav class="navbar">
+        <div class="nav-left">
+            <span class="nav-logo">
+                <img src="../images/logo.png" alt="Logo" />
+            </span>
+            <a href="../index.html">HOME</a>
+            <a href="../projects.html">PROJECTS</a>
         </div>
-      </section>
+        <div class="nav-right">
+            <button class="darkModeToggleClass" id="darkModeToggle" aria-label="Toggle dark mode">🌙</button>
+        </div>
+    </nav>
 
-      <section class="projects-summary">
-        <h2>Ongoing and Completed Projects</h2>
-        <p>
-          I have completed multiple projects including web scrapers, APIs, and
-          interactive web applications. Currently, I am developing a real-time
-          chat app - yep, that will take a while.
-        </p>
-        <p>
-          I'm also interested in learning as many programming languages as I can, and that includes human languages too, as I'm currently enthusiastically studying Dutch! In addition to this website, I'm also working on various other projects, including simple Go applications, APIs, Python scripts, and small games. All pretty exciting stuff!
-        </p>
-        <p>
-          This website is a space for visitors to read a bit about me and check out some of my projects, at least those that can be displayed on GitHub Pages.
-        </p>
-        <p>
-          Hope over to the <a href="projects.html">Projects</a> section to see what's what!
-        </p>
-      </section>
+  </header>
+
+    <main>
+        <h1>Skyrim Alchemy Scrapper...</h1>
+
+        <div class="buttons">
+            <button id="ingredientBtn">Choose Ingredient</button>
+            <button id="effectBtn">Choose Effect</button>
+            <button id="createPotionBtn">Create Potion</button>
+        </div>
+
+        <section class="hidden" id="output-section">
+            <div class="output"></div>
+        </section>
+
+        <div id="alert-modal">
+        </div>
+
     </main>
 
     <footer>
@@ -87,4 +77,5 @@
     </footer>
 
   </body>
+
 </html>
