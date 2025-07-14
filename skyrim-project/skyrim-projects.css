@@ -478,9 +478,9 @@ body.dark-mode .footer-icons img {
 }
 
 /* Responsive adjustments */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   html {
-    font-size: 10px;
+    font-size: 12px;
     overflow-x: hidden;
   }
 
@@ -495,24 +495,6 @@ body.dark-mode .footer-icons img {
     margin: 0;
   }
 
-  button {
-    width: 100%;
-    font-size: 0.9rem;
-    margin: 5px;
-  }
-
-  #add-effect {
-    width: 100px;
-    padding: 0.6rem 0;
-    margin: 0 0 1rem 0;
-  }
-
-  #add-effect::before {
-    background-size: 14px 14px;
-    width: 14px;
-    height: 14px;
-  }
-
   .output {
     max-width: 400px;
     min-width: 80px;
@@ -522,6 +504,7 @@ body.dark-mode .footer-icons img {
     display: flex;
     flex-direction: row;
   }
+
   .input {
     font-size: 0.8rem;
     max-width: 200px;
@@ -529,7 +512,50 @@ body.dark-mode .footer-icons img {
 
   .input h2 {
     padding: 0.5rem;
+    padding-top: 0;
     max-height: 50px;
-    min-height: 60px;
+    min-height: 40px;
+  }
+
+  #alert-modal {
+    width: 300px;
+    height: 70px;
+    padding-top: 1.5rem;
+    padding-bottom: 0;
+    margin-left: -140px;
+    left: 50%;
+  }
+
+  button {
+    width: 100%;
+    font-size: 0.9rem;
+    margin: 5px;
+  }
+
+  .buttons button {
+    min-width: 40px;
+    margin: 4px 7px;
+  }
+
+  #selectEffectBtn {
+    width: 90vw;
+  }
+
+  #add-effect {
+    width: 100px;
+    height: 3rem;
+    padding: 0.6rem 0;
+    margin: 0 1rem 1rem 0;
+    font-weight: 200;
+  }
+
+  #add-effect::before {
+    content: none;
+  }
+
+  #ingredients-counter {
+    padding: 0.6rem 1rem;
+    width: 100px;
+    font-weight: 200;
   }
 }
