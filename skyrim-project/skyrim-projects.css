@@ -122,10 +122,15 @@ body::before {
 }
 
 /* main section */
+main {
+  font-size: 20px;
+}
+
 h1 {
   padding: 10px;
   color: var(--color-footer-text-light);
   margin-top: 2rem;
+  font-weight: 900;
 }
 
 .buttons {
@@ -199,7 +204,7 @@ button:disabled {
   margin: 20px;
   text-align: center;
   padding: 10px;
-  font-size: 1rem;
+  font-size: 1.3rem;
   font-weight: 900;
   font-family: "Pirata One", cursive;
   color: #333;
@@ -321,9 +326,11 @@ button:disabled {
 
 .input h2 {
   border-bottom: 1px dashed gray;
+  text-shadow: 1px 0 6px var(--color-primary);
   padding-bottom: 0.3rem;
-  max-height: 120px;
-  min-height: 120px;
+  font-weight: 200;
+  max-height: 90px;
+  min-height: 90px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -337,9 +344,12 @@ button:disabled {
 }
 
 .common-ingredient-tag {
-  font-size: 1.3rem;
-  text-shadow: 1px 2px 0 var(--color-footer-text-light);
-  color: var(--color-primary);
+  font-size: 1.2em;
+  text-shadow: 1px 0 2px var(--color-primary);
+  letter-spacing: 0.1em;
+  font-weight: 200;
+  line-height: 1.2em;
+  color: var(--color-text-light);
 }
 
 .potion p:not(.common-ingredient-tag) {
@@ -444,14 +454,21 @@ body.dark-mode h1 {
   text-shadow: 1px 1px var(--color-footer-text-light);
 }
 
+body.dark-mode .output > div {
+  background-color: hsla(0, 0%, 6%, 0.4);
+}
+
 body.dark-mode h2 {
   color: var(--color-primary-light);
-  text-shadow: 1px 1px var(--color-primary-dark);
+  text-shadow: 1px 0 5px var(--color-primary-dark);
 }
 
 body.dark-mode .common-ingredient-tag {
-  color: var(--color-primary-light);
-  text-shadow: 1px 0 3px var(--color-primary-dark);
+  color: var(--color-text-dark);
+  text-shadow: 1px 0 8px var(--color-primary-light);
+  letter-spacing: 0.1em;
+  font-size: 1.2em;
+  line-height: 1.2sem;
 }
 
 body.dark-mode a {
@@ -513,8 +530,8 @@ body.dark-mode .footer-icons img {
   .input h2 {
     padding: 0.5rem;
     padding-top: 0;
+    min-height: 50px;
     max-height: 50px;
-    min-height: 40px;
   }
 
   #alert-modal {

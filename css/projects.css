@@ -183,6 +183,7 @@ h1 {
   font-weight: 700;
   padding: 0.2em 0.5em;
   margin-right: 0.5rem;
+  margin-bottom: 1rem;
   border-radius: 8px;
   box-shadow: 0 2px 6px var(--color-primary-dark);
   user-select: none;
@@ -193,6 +194,7 @@ h1 {
   font-family: "MedievalSharp", cursive;
   font-size: 1.5rem;
   margin-bottom: 1rem;
+  line-height: 2rem;
   color: var(--color-text-dark);
 }
 
@@ -311,8 +313,8 @@ body.dark-mode a {
 }
 
 body.dark-mode .btn-link {
-  color: var(--color-primary-light);
-  text-shadow: 1px 1px 5px var(--color-footer-bg-dark);
+  color: var(--color-text-dark);
+  text-shadow: 1px 1px 5px var(--color-footer-text-light);
   background-color: var(--color-primary);
 }
 

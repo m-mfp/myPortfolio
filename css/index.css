@@ -206,7 +206,7 @@ h2 {
 .projects-summary a {
   font-family: "MedievalSharp", monospace;
   color: var(--color-text-light);
-  text-shadow: 1px 0 5px var(--color-text-dark);
+  text-shadow: 1px 0 5px var(--color-primary-light);
   text-decoration: none;
   font-size: 1.5rem;
   font-weight: 600;
