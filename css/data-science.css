@@ -343,18 +343,15 @@ body.dark-mode footer {
   border-top-color: var(--color-accent);
 }
 
-/* Responsive */
+/* Responsive adjustments */
 @media (max-width: 600px) {
   html {
-    font-size: 14px;
+    font-size: 10px;
   }
-  .navbar a {
-    font-size: 1rem;
-  }
-  .project h2 {
-    font-size: 1.2rem;
-  }
-  .btn-link {
-    font-size: 0.9rem;
+
+  .nav-logo img {
+    width: 40px;
+    height: 40px;
+    display: block;
   }
 }
