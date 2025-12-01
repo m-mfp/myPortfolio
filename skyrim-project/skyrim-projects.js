@@ -85,7 +85,9 @@ function findEffectsForGivenIngredient(selectElement, data) {
   outputSection.classList.remove("hidden");
   selectElement.value = "-";
   output.innerHTML = "";
-  selectElement.addEventListener("change", () => displayIngredientData(data, selectElement));
+  selectElement.addEventListener("change", () =>
+    displayIngredientData(data, selectElement)
+  );
 }
 
 // Fill-in options for select btn
@@ -103,22 +105,27 @@ function displayIngredientData(data, input) {
   if (!selectedRow) return;
   output.innerHTML = "";
   const selectedEffects = Object.values(selectedRow).slice(1).filter(Boolean);
-  selectedEffects.forEach(effect => {
+  selectedEffects.forEach((effect) => {
     const div = document.createElement("div");
     div.classList.add("input");
     div.innerHTML = `<h2>${effect}</h2><div></div>`;
+
     output.appendChild(div);
-    const innerdiv = div.querySelector("div");
-    findIngredients(data, effect).forEach(ing => {
-      innerdiv.innerHTML += `<p>${ing}</p>`;
-    });
+    div.innerHTML += `<div class="ingredients-list">${findIngredients(
+      data,
+      effect
+    )
+      .map((ing) => `<p>${ing}</p>`)
+      .join("")}</div>`;
   });
 
   // Find and highlight with unique colors
   const matches = [];
-  data.forEach(row => {
+  data.forEach((row) => {
     if (row.Ingredient === selectedRow.Ingredient) return;
-    const shared = selectedEffects.filter(eff => Object.values(row).slice(1).includes(eff));
+    const shared = selectedEffects.filter((eff) =>
+      Object.values(row).slice(1).includes(eff)
+    );
     if (shared.length >= 2) {
       matches.push(row.Ingredient);
     }
@@ -164,7 +171,9 @@ function findIngredientsForGivenEffect(selectElement, data) {
   outputSection.classList.remove("hidden");
   selectElement.value = "-";
   output.innerHTML = "";
-  selectElement.addEventListener("change", () => displayEffectData(data, selectElement));
+  selectElement.addEventListener("change", () =>
+    displayEffectData(data, selectElement)
+  );
 }
 
 // Fill options of select button
@@ -190,9 +199,13 @@ function displayEffectData(data, input, btn = null) {
     div.classList.add("input");
     div.innerHTML = `<h2>${input.value}</h2>`;
     output.appendChild(div);
-    findIngredients(data, input.value).sort().forEach((ing) => {
-      div.innerHTML += `<p>${ing}</p>`;
-    });
+    div.innerHTML += `<div class="ingredients-list">${findIngredients(
+      data,
+      input.value
+    )
+      .sort()
+      .map((ing) => `<p>${ing}</p>`)
+      .join("")}</div>`;
   } else if (btn == "add-effect") {
     const div = document.createElement("div");
     div.classList.add("input", "potion");
@@ -200,9 +213,11 @@ function displayEffectData(data, input, btn = null) {
     div.innerHTML = `<h2>${input.value}</h2>`;
     output.appendChild(div);
     createCloseBtn(div, newId);
-    findIngredients(data, input.value).sort().forEach((ing) => {
-      div.innerHTML += `<p>${ing}</p>`;
-    });
+    findIngredients(data, input.value)
+      .sort()
+      .forEach((ing) => {
+        div.innerHTML += `<p>${ing}</p>`;
+      });
   }
 }
 
@@ -255,7 +270,7 @@ function createPotion(selectElement, data) {
     } else {
       displayEffectData(data, selectElement, "add-effect");
       const newId = selectElement.value.toLowerCase().replace(/\s+/g, "-");
-      document.querySelectorAll(`.${newId}`).forEach(btn => {
+      document.querySelectorAll(`.${newId}`).forEach((btn) => {
         btn.addEventListener("click", () => {
           btn.parentNode.remove();
           const common = findCommonIng(data, output);
@@ -273,8 +288,8 @@ function createPotion(selectElement, data) {
 // Apply highlights to common-ingredients
 function applyUniqueHighlights(ingredientList) {
   // Clear old unique classes
-  document.querySelectorAll("[class^='common-ingredient-']").forEach(el => {
-    el.className = el.className.replace(/common-ingredient-\d+/g, '').trim();
+  document.querySelectorAll("[class^='common-ingredient-']").forEach((el) => {
+    el.className = el.className.replace(/common-ingredient-\d+/g, "").trim();
   });
   if (ingredientList.length === 0) {
     updateCounter(0);
@@ -283,7 +298,7 @@ function applyUniqueHighlights(ingredientList) {
   const sorted = [...ingredientList].sort();
   sorted.forEach((ing, index) => {
     const colorClass = `common-ingredient-${(index % 8) + 1}`;
-    document.querySelectorAll(".output p").forEach(p => {
+    document.querySelectorAll(".output p").forEach((p) => {
       if (p.textContent.trim() === ing) {
         p.classList.add(colorClass);
       }
