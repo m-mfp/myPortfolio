@@ -105,34 +105,7 @@ function fillIngredientSelectBtn(data, selectElement) {
   });
 }
 
-///////////////////////////////////////////////////////////// 
 // Display Ingredient Data
-// function displayIngredientData(data, input) {
-//   if (input.id == "selectIngredientBtn") {
-//     var row = findEffect(data, input.value);
-//   }
-
-//   output.innerHTML = "";
-//   if (row) {
-//     Object.values(row)
-//       .slice(1)
-//       .forEach((effect) => {
-//         div = document.createElement("div");
-//         div.classList.add("input");
-//         div.innerHTML = `<h2>${effect}</h2>`;
-//         output.appendChild(div);
-
-//         innerdiv = document.createElement("div");
-//         const ingredientList = findIngredients(data, effect);
-//         ingredientList.forEach((ing) => {
-//           innerdiv.innerHTML += `<p>${ing}</p>`;
-//         });
-//         div.appendChild(innerdiv);
-//       });
-//   }
-// }
-
-// Display Ingredient Data + highlight ingredients sharing 2+ effects
 function displayIngredientData(data, input) {
   if (input.id !== "selectIngredientBtn") return;
 
@@ -155,8 +128,7 @@ function displayIngredientData(data, input) {
     });
   });
 
-  // === HIGHLIGHT: ingredients sharing 2+ effects ===
-  // Clear old highlights
+  // Highlight Ingredients
   document.querySelectorAll(".common-ingredient-tag").forEach(el => 
     el.classList.remove("common-ingredient-tag")
   );
@@ -175,7 +147,6 @@ function displayIngredientData(data, input) {
     }
   });
 
-  // Apply new highlights
   document.querySelectorAll(".output p").forEach(p => {
     if (matches.has(p.textContent.trim())) {
       p.classList.add("common-ingredient-tag");
@@ -188,9 +159,6 @@ function removeHighlight() {
     el.classList.remove("common-ingredient-tag");
   });
 }
-
-
-////////////////////////////////////////////////////////////
 
 // Find Effects for given Ingredient
 function findEffect(data, selectElement) {
