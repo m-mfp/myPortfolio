@@ -105,31 +105,92 @@ function fillIngredientSelectBtn(data, selectElement) {
   });
 }
 
+///////////////////////////////////////////////////////////// 
 // Display Ingredient Data
+// function displayIngredientData(data, input) {
+//   if (input.id == "selectIngredientBtn") {
+//     var row = findEffect(data, input.value);
+//   }
+
+//   output.innerHTML = "";
+//   if (row) {
+//     Object.values(row)
+//       .slice(1)
+//       .forEach((effect) => {
+//         div = document.createElement("div");
+//         div.classList.add("input");
+//         div.innerHTML = `<h2>${effect}</h2>`;
+//         output.appendChild(div);
+
+//         innerdiv = document.createElement("div");
+//         const ingredientList = findIngredients(data, effect);
+//         ingredientList.forEach((ing) => {
+//           innerdiv.innerHTML += `<p>${ing}</p>`;
+//         });
+//         div.appendChild(innerdiv);
+//       });
+//   }
+// }
+
+// Display Ingredient Data + highlight ingredients sharing 2+ effects
 function displayIngredientData(data, input) {
-  if (input.id == "selectIngredientBtn") {
-    var row = findEffect(data, input.value);
-  }
+  if (input.id !== "selectIngredientBtn") return;
+
+  const selectedRow = findEffect(data, input.value);
+  if (!selectedRow) return;
 
   output.innerHTML = "";
-  if (row) {
-    Object.values(row)
-      .slice(1)
-      .forEach((effect) => {
-        div = document.createElement("div");
-        div.classList.add("input");
-        div.innerHTML = `<h2>${effect}</h2>`;
-        output.appendChild(div);
 
-        innerdiv = document.createElement("div");
-        const ingredientList = findIngredients(data, effect);
-        ingredientList.forEach((ing) => {
-          innerdiv.innerHTML += `<p>${ing}</p>`;
-        });
-        div.appendChild(innerdiv);
-      });
-  }
+  const selectedEffects = Object.values(selectedRow).slice(1).filter(Boolean);
+
+  selectedEffects.forEach(effect => {
+    const div = document.createElement("div");
+    div.classList.add("input");
+    div.innerHTML = `<h2>${effect}</h2><div></div>`;
+    output.appendChild(div);
+
+    const innerdiv = div.querySelector("div");
+    findIngredients(data, effect).forEach(ing => {
+      innerdiv.innerHTML += `<p>${ing}</p>`;
+    });
+  });
+
+  // === HIGHLIGHT: ingredients sharing 2+ effects ===
+  // Clear old highlights
+  document.querySelectorAll(".common-ingredient-tag").forEach(el => 
+    el.classList.remove("common-ingredient-tag")
+  );
+
+  const matches = new Set();
+
+  data.forEach(row => {
+    if (row.Ingredient === selectedRow.Ingredient) return;
+
+    const shared = selectedEffects.filter(eff => 
+      Object.values(row).slice(1).includes(eff)
+    );
+
+    if (shared.length >= 2) {
+      matches.add(row.Ingredient);
+    }
+  });
+
+  // Apply new highlights
+  document.querySelectorAll(".output p").forEach(p => {
+    if (matches.has(p.textContent.trim())) {
+      p.classList.add("common-ingredient-tag");
+    }
+  });
 }
+
+function removeHighlight() {
+  document.querySelectorAll(".common-ingredient-tag").forEach(el => {
+    el.classList.remove("common-ingredient-tag");
+  });
+}
+
+
+////////////////////////////////////////////////////////////
 
 // Find Effects for given Ingredient
 function findEffect(data, selectElement) {
