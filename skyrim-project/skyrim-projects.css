@@ -220,7 +220,7 @@ button:disabled {
 }
 
 .selectBtn option {
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   color: #333;
   background-color: #ffffff;
 }
@@ -352,10 +352,20 @@ button:disabled {
   color: var(--color-text-light);
 }
 
-.potion p:not(.common-ingredient-tag) {
-  font-size: 0.9rem;
+.common-ingredient-1 { color: var(--color-text-light); font-size: 1.4rem; text-shadow: 0 0 8px #ffff00, 0 0 16px #ffff00 !important; }
+.common-ingredient-2 { color: var(--color-text-light); font-size: 1.4rem; text-shadow: 0 0 8px #00ff00, 0 0 16px #00ff00 !important; }
+.common-ingredient-3 { color: var(--color-text-light); font-size: 1.4rem; text-shadow: 0 0 8px #00ffff, 0 0 16px #00ffff !important; }
+.common-ingredient-4 { color: var(--color-text-light); font-size: 1.4rem; text-shadow: 0 0 8px #ff00ff, 0 0 16px #ff00ff !important; }
+.common-ingredient-5 { color: var(--color-text-light); font-size: 1.4rem; text-shadow: 0 0 8px #ff8800, 0 0 16px #ff8800 !important; }
+.common-ingredient-6 { color: var(--color-text-light); font-size: 1.4rem; text-shadow: 0 0 8px #88ff00, 0 0 16px #88ff00 !important; }
+.common-ingredient-7 { color: var(--color-text-light); font-size: 1.4rem; text-shadow: 0 0 8px #00ff88, 0 0 16px #00ff88 !important; }
+.common-ingredient-8 { color: var(--color-text-light); font-size: 1.4rem; text-shadow: 0 0 8px #ff0088, 0 0 16px #ff0088 !important; }
+
+.potion p:not([class^="common-ingredient-"]) {
+  font-size: 1.1rem;
   color: var(--color-footer-text-dark);
   text-shadow: 1px 0 4px var(--color-footer-bg-dark);
+  font-weight: 400;
 }
 
 /* small-close-btn */
@@ -469,6 +479,18 @@ body.dark-mode .common-ingredient-tag {
   letter-spacing: 0.1em;
   font-size: 1.2em;
   line-height: 1.2sem;
+}
+
+body.dark-mode .common-ingredient-1,
+body.dark-mode .common-ingredient-2,
+body.dark-mode .common-ingredient-3,
+body.dark-mode .common-ingredient-4,
+body.dark-mode .common-ingredient-5,
+body.dark-mode .common-ingredient-6,
+body.dark-mode .common-ingredient-7,
+body.dark-mode .common-ingredient-8 {
+  color: var(--color-text-light) !important;  /* black text like in light mode */
+  font-weight: 900 !important;
 }
 
 body.dark-mode a {
