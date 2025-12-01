@@ -34,6 +34,7 @@ const ingredientBtn = document.getElementById("ingredientBtn");
 const effectBtn = document.getElementById("effectBtn");
 const createPotionBtn = document.getElementById("createPotionBtn");
 const outputSection = document.getElementById("output-section");
+let activeMode = null;
 
 document.addEventListener("DOMContentLoaded", function () {
   d3.csv("../db/data.csv")
@@ -71,15 +72,20 @@ function handleBtn(data, btn) {
 function findEffectsForGivenIngredient(selectElement, data) {
   selectElement.id = "selectIngredientBtn";
   fillIngredientSelectBtn(data, selectElement);
-  effectBtn.disabled = !effectBtn.disabled;
-  createPotionBtn.disabled = !createPotionBtn.disabled;
-  ingredientBtn.classList.toggle("pressed");
-  outputSection.classList.toggle("hidden");
+
+  if (activeMode !== "ingredient") {
+    effectBtn.disabled = false;
+    createPotionBtn.disabled = false;
+    ingredientBtn.classList.add("pressed");
+    if (activeMode === "effect") effectBtn.classList.remove("pressed");
+    if (activeMode === "potion") createPotionBtn.classList.remove("pressed");
+  }
+
+  activeMode = "ingredient";
+  outputSection.classList.remove("hidden");
   selectElement.value = "-";
   output.innerHTML = "";
-  selectElement.addEventListener("change", () => {
-    displayIngredientData(data, selectElement);
-  });
+  selectElement.addEventListener("change", () => displayIngredientData(data, selectElement));
 }
 
 // Fill-in options for select btn
@@ -145,15 +151,20 @@ function findIngredients(data, effect) {
 function findIngredientsForGivenEffect(selectElement, data) {
   selectElement.id = "selectEffectBtn";
   fillEffectSelectBtn(data, selectElement);
-  ingredientBtn.disabled = !ingredientBtn.disabled;
-  createPotionBtn.disabled = !createPotionBtn.disabled;
-  effectBtn.classList.toggle("pressed");
-  outputSection.classList.toggle("hidden");
+
+  if (activeMode !== "effect") {
+    ingredientBtn.disabled = false;
+    createPotionBtn.disabled = false;
+    effectBtn.classList.add("pressed");
+    if (activeMode === "ingredient") ingredientBtn.classList.remove("pressed");
+    if (activeMode === "potion") createPotionBtn.classList.remove("pressed");
+  }
+
+  activeMode = "effect";
+  outputSection.classList.remove("hidden");
   selectElement.value = "-";
   output.innerHTML = "";
-  selectElement.addEventListener("change", () => {
-    displayEffectData(data, selectElement);
-  });
+  selectElement.addEventListener("change", () => displayEffectData(data, selectElement));
 }
 
 // Fill options of select button
@@ -207,6 +218,7 @@ function createCloseBtn(div, effect) {
 function createPotion(selectElement, data) {
   selectElement.id = "selectEffectBtn";
   fillEffectSelectBtn(data, selectElement);
+
   const addEffect = document.createElement("button");
   addEffect.classList.add("button");
   addEffect.innerText = "Add Effect";
@@ -218,10 +230,16 @@ function createPotion(selectElement, data) {
   ingredientsCounter.innerText = "0 ingredients";
   outputSection.insertBefore(ingredientsCounter, outputSection.children[2]);
 
-  ingredientBtn.disabled = !ingredientBtn.disabled;
-  effectBtn.disabled = !effectBtn.disabled;
-  createPotionBtn.classList.toggle("pressed");
-  outputSection.classList.toggle("hidden");
+  if (activeMode !== "potion") {
+    ingredientBtn.disabled = false;
+    effectBtn.disabled = false;
+    createPotionBtn.classList.add("pressed");
+    if (activeMode === "ingredient") ingredientBtn.classList.remove("pressed");
+    if (activeMode === "effect") effectBtn.classList.remove("pressed");
+  }
+
+  activeMode = "potion";
+  outputSection.classList.remove("hidden");
   selectElement.value = "-";
   output.innerHTML = "";
 
@@ -252,7 +270,7 @@ function createPotion(selectElement, data) {
   });
 }
 
-// NEW: Apply unique colored highlights
+// Apply highlights to common-ingredients
 function applyUniqueHighlights(ingredientList) {
   // Clear old unique classes
   document.querySelectorAll("[class^='common-ingredient-']").forEach(el => {
@@ -274,7 +292,7 @@ function applyUniqueHighlights(ingredientList) {
   updateCounter(sorted.length);
 }
 
-// NEW: Update counter
+// Update counter
 function updateCounter(count) {
   const counter = document.getElementById("ingredients-counter");
   if (!counter) return;
@@ -288,7 +306,6 @@ function updateCounter(count) {
   }
 }
 
-// Keep only this (old functions removed)
 function findCommonIng(data, output) {
   let allIngredients = [];
   for (let child of output.children) {

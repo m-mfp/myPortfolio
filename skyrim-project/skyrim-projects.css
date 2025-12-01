@@ -489,7 +489,7 @@ body.dark-mode .common-ingredient-5,
 body.dark-mode .common-ingredient-6,
 body.dark-mode .common-ingredient-7,
 body.dark-mode .common-ingredient-8 {
-  color: var(--color-text-light) !important;  /* black text like in light mode */
+  color: var(--color-text-light) !important;
   font-weight: 900 !important;
 }
 
