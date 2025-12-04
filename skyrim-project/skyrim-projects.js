@@ -213,11 +213,13 @@ function displayEffectData(data, input, btn = null) {
     div.innerHTML = `<h2>${input.value}</h2>`;
     output.appendChild(div);
     createCloseBtn(div, newId);
-    findIngredients(data, input.value)
+    div.innerHTML += `<div class="ingredients-list">${findIngredients(
+      data,
+      input.value
+    )
       .sort()
-      .forEach((ing) => {
-        div.innerHTML += `<p>${ing}</p>`;
-      });
+      .map((ing) => `<p>${ing}</p>`)
+      .join("")}</div>`;
   }
 }
 
